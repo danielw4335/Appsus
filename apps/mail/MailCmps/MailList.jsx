@@ -2,25 +2,25 @@ import { MailPreview } from "../MailCmps/MailPreview.jsx"
 
 
 
-export function MailList( {mails, loadingClass} ) {
-// console.log(loadingClass);
-// console.log(typeof mails);
+export function MailList({ mails, loadingClass }) {
+    // console.log(loadingClass);
+    // console.log(typeof mails);
 
 
     if (!mails || !mails.length) return <div>No Mails To Show...</div>
     return (
 
         <ul className="mail-list container">
-             {mails.map(mail => (
-                 <li className={loadingClass} 
-                 key={mail.id}
-                 >
-                     <MailPreview mail={mail} />
-                 </li>
-             ))}
-<div>Mail list</div>
-         </ul>
-)
+            {mails.map(mail => (
+                <div
+                    className={loadingClass}
+                    key={mail.id}>
+                    <MailPreview mail={mail} />
+                    </div>
+            ))}
+            <div>Mail list</div>
+        </ul>
+    )
 
 }
 
@@ -45,7 +45,7 @@ export function MailList( {mails, loadingClass} ) {
 //                         </button>
 //                         <button >
 //                             <Link to={`/books/edit/${book.id}`}>Edit</Link>
-//                         </button>      
+//                         </button>
 //                          <button >
 //                             <Link to={'/books/edit'}>Add</Link>
 //                         </button>

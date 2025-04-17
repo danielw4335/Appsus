@@ -20,6 +20,14 @@ export function MailPreview({mail}) {
 
     return (
         <div className="mail-preview">
+            <a class="fa-regular fa-square"></a>
+            {/* <i class="fa-regular fa-square-check"></i> */}
+            <i class="fa-regular fa-star"></i>
+            {/* <i class="fa-solid fa-star"></i> */}
+            <i class="fa-regular fa-tag"></i>
+            {/* <i class="fa-solid fa-tag"></i> */}
+ 
+
         <p>{from}</p>
         <p>{subject}</p>
         <p>{cutTxt()}</p>
