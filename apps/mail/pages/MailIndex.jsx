@@ -32,6 +32,7 @@ export function MailIndex() {
             .catch(err => console.log('err:', err))
     }
 
+    
    
     const loadingClass = isLoading ? 'loading' : ''
     return (

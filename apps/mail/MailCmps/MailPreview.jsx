@@ -3,17 +3,30 @@ import { MailService } from "../services/mail.service"
 
 
 export function MailPreview({mail}) {
-
     const { from, subject, body, sentAt } = mail
-    return <section>
-   <article className="mail-preview">
-        <h2>{from}</h2>
-        <h3>{subject}</h3>
-        <h4>{body}</h4>
-        <h5>{sentAt}</h5>
-        </article>
 
-    </section>
+    
+    function cutTxt() {
+        let text = body
+        console.log(body)
+      const displayText = (typeof text === 'string')
+        ? (text.length <= 100
+            ? text
+            : text.substring(0, 20))
+        : ''
+        console.log(displayText);
+        return displayText
+    }
+
+    return (
+        <div className="mail-preview">
+        <p>{from}</p>
+        <p>{subject}</p>
+        <p>{cutTxt()}</p>
+        <p>{sentAt}</p>
+        </div>
+     )
+    
 }
 
 
