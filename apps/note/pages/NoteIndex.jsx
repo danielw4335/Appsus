@@ -42,6 +42,14 @@ export function NoteIndex() {
     noteService.update(updatedNote).then(loadNotes)
   }
 
+  function onChangeColor(note, newColor){
+    const updatedNote = {
+      ...note,
+      style: {...note.style, backgroundColor: newColor}
+    }
+    noteService.update(updatedNote).then(loadNotes)
+  }
+
   if (!notes) return <div>Loading notes...</div>
   return (
     <section className="note-index">
@@ -51,6 +59,7 @@ export function NoteIndex() {
         onDeleteNote={onDeleteNote}
         onDuplicateNote={onDuplicateNote}
         onTogglePin={onTogglePin}
+        onChangeColor={onChangeColor}
       />
       <div>note app</div>
     </section>

@@ -6,7 +6,14 @@ import { NoteVideo } from "./dynamic-cmps/NoteVideo.jsx"
 import { noteService } from "../services/note.service.js"
 import { NoteIndex } from "../pages/NoteIndex.jsx"
 
-export function NotePreview({ note, onDeleteNote, onDuplicateNote, onTogglePin }) {
+const { useState } = React
+export function NotePreview({
+  note,
+  onDeleteNote,
+  onDuplicateNote,
+  onTogglePin,
+  onChangeColor,
+}) {
   const cmpMap = {
     NoteTxt: NoteTxt,
     NoteImg,
@@ -14,6 +21,7 @@ export function NotePreview({ note, onDeleteNote, onDuplicateNote, onTogglePin }
     NoteVideo,
   }
   const DynamicCmp = cmpMap[note.type]
+  const [isPickerOpen, setIsPickerOpen] = useState(false)
 
   return (
     <section
@@ -21,14 +29,33 @@ export function NotePreview({ note, onDeleteNote, onDuplicateNote, onTogglePin }
       style={{ backgroundColor: note.style.backgroundColor }}
     >
       <DynamicCmp info={note.info} />
+      {isPickerOpen && (
+        <div className="color-picker">
+          {["#fdd", "#fdfd96", "#caffbf", "#a0c4ff", "#d0bfff"].map((color) => (
+            <button
+              key={color}
+              className="color-btn"
+              style={{ backgroundColor: color }}
+              onClick={() => {
+                onChangeColor(note, color)
+                setIsPickerOpen(false) // לסגור את התפריט אחרי בחירה
+              }}
+            ></button>
+          ))}
+        </div>
+      )}
+
       <button onClick={() => onDeleteNote(note)}>
         <a className="fa-solid fa-trash"></a>
       </button>
       <button onClick={() => onDuplicateNote(note)}>
-        <i className="fa-solid fa-copy"></i>
+        <a className="fa-solid fa-copy"></a>
       </button>
       <button onClick={() => onTogglePin(note)}>
-        <i className="fa-solid fa-thumbtack"></i>
+        <a className="fa-solid fa-thumbtack"></a>
+      </button>
+      <button onClick={() => setIsPickerOpen((prev) => !prev)}>
+        <a className="fa-solid fa-palette"></a>
       </button>
     </section>
   )
