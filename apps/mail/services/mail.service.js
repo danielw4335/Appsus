@@ -40,7 +40,9 @@ const loggedinUser = {
 
        function _createMails(count = 5) {
         let mails = utilService.loadFromStorage(mail_KEY) || []
-    
+
+    if(!mails || !mails.length){
+        console.log('creat mails', mails)
         for (let i = 0; i < count; i++) {
             const mail = {
                 id: utilService.makeId(),
@@ -53,9 +55,10 @@ const loggedinUser = {
                 from: `sender${i + 1}@mail.com`,
                 to: `user@appsus.com`
             }
-    
+            
             mails.push(mail)
         }
+    }
     
         
         utilService.saveToStorage(mail_KEY, mails)
@@ -82,6 +85,7 @@ const loggedinUser = {
                 // if (filterBy.minPublicationYear) {
                 //     mails = mails.filter(mail => mail.publishedDate >= filterBy.minPublicationYear)
                 // }
+                console.log(mails)
                 return mails
             })
     }
