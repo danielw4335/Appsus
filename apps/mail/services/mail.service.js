@@ -30,13 +30,7 @@ const loggedinUser = {
     to: 'user@appsus.com'
     }
 
-    const filterBy = {
-        status: 'inbox/sent/trash/draft',
-        txt: 'puki', // no need to support complex text search
-        isRead: true, // (optional property, if missing: show all)
-        isStared: true, // (optional property, if missing: show all)
-        lables: ['important', 'romantic'] // has any of the labels
-       }
+
 
        function _createMails(count = 5) {
         let mails = utilService.loadFromStorage(mail_KEY) || []
@@ -53,28 +47,30 @@ const loggedinUser = {
                 sentAt: Date.now() + i * 1000,
                 removedAt: null,
                 from: `sender${i + 1}@mail.com`,
-                to: `user@appsus.com`
+                to: `user@appsus.com`,
+                status: 'inbox',
+                isStared: Math.random() > 0.5,
+                lables: []
             }
             
 
             mails.push(mail)
         }
     }
-    
-        
         utilService.saveToStorage(mail_KEY, mails)
     }
     
 
-    //    function query(filterBy = {}) {
+
        function query(filterBy = {}) {
         return storageService.query(mail_KEY)
             .then
             (mails => {
-                // if (filterBy.title) {
-                //     const regExp = new RegExp(filterBy.title, 'i')
-                //     mails = mails.filter(mail => regExp.test(mail.title))
-                // }
+                console.log('before filtering',mails)
+                if (filterBy.txt) {
+                    const regExp = new RegExp(filterBy.txt, 'i')
+                    mails = mails.filter(mail => regExp.test(mail.subject || mail.body || mail.from || mail.to))
+                }
                 // if (filterBy.minPrice) {
                 //     mails = mails.filter(mail => mail.listPrice.amount >= filterBy.minPrice)
                 // }
@@ -86,22 +82,25 @@ const loggedinUser = {
                 // if (filterBy.minPublicationYear) {
                 //     mails = mails.filter(mail => mail.publishedDate >= filterBy.minPublicationYear)
                 // }
-                console.log(mails)
+                console.log('after filtering',mails)
                 return mails
             })
     }
 
+     
 
     function getFilterFromSearchParams(searchParams) {
-        const title = searchParams.get('title') || ''
-        const minPrice = searchParams.get('minPrice') || ''
-        const pageCount = searchParams.get('pageCount') || ''
-        const minPublicationYear = searchParams.get('minPublicationYear') || ''
+        const status = searchParams.get('status') || ''
+        const txt = searchParams.get('txt') || ''
+        const isRead = searchParams.get('isRead') || ''
+        const isStared = searchParams.get('isStared') || ''
+        const lables = searchParams.get('lables') || ''
         return {
-            title,
-            minPrice,
-            pageCount,
-            minPublicationYear
+            status,
+            txt,
+            isRead,
+            isStared,
+            lables
         }
     }
 

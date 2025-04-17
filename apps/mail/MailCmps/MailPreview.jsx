@@ -8,13 +8,11 @@ export function MailPreview({mail}) {
     
     function cutTxt() {
         let text = body
-        console.log(body)
       const displayText = (typeof text === 'string')
         ? (text.length <= 100
             ? text
             : text.substring(0, 20))
         : ''
-        console.log(displayText);
         return displayText
     }
 
@@ -24,7 +22,7 @@ export function MailPreview({mail}) {
             {/* <i class="fa-regular fa-square-check"></i> */}
             <i class="fa-regular fa-star"></i>
             {/* <i class="fa-solid fa-star"></i> */}
-            <i class="fa-regular fa-tag"></i>
+            {/* <i class="fa-regular fa-tag"></i> */}
             {/* <i class="fa-solid fa-tag"></i> */}
  
 
