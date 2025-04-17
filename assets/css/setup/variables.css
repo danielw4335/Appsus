@@ -1,3 +1,7 @@
 :root {
     --main-bg-color: lightblue;
+
+    --mail: 'Roboto', sans-serif;
+    --Regular: 400;
+    --Bold: 700;
 }

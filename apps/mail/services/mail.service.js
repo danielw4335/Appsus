@@ -4,10 +4,11 @@ import { storageService } from '../../../services/async-storage.service.js'
 const mail_KEY = 'bookDB'
 _createMails()
 
-export const mailService = {
+export const MailService = {
     query,
     getFilterFromSearchParams,
-    // get,
+    markAsRead,
+    get,
     // save,
     // remove
 }
@@ -43,7 +44,7 @@ const loggedinUser = {
                 createdAt: Date.now(),
                 subject: `${utilService.makeLorem(5)} Mail Subject ${i + 1}`,
                 body: utilService.makeLorem(20),
-                isRead: Math.random() > 0.5,
+                isRead: false,
                 sentAt: Date.now() + i * 1000,
                 removedAt: null,
                 from: `sender${i + 1}@mail.com`,
@@ -104,19 +105,28 @@ const loggedinUser = {
         }
     }
 
-    // function get(bookId) {
-    //     return storageService.get(book_KEY, bookId).then(_setNextPrevBookId)
-    // }
+    function markAsRead(mailId) {
+        return get(mailId).then(mail => {
+          mail.isRead = true
+          return save(mail)
+        })
+      }
+
+    function get(mailId) {
+        return storageService.get(mail_KEY, mailId)
+        // .then(_setNextPrevBookId)
+    }
     
     // function remove(bookId) {
     //     // return Promise.reject('Oh No!')
     //     return storageService.remove(book_KEY, bookId)
     // }
     
-    // function save(book) {
-    //     if (book.id) {
-    //         return storageService.put(book_KEY, book)
-    //     } else {
-    //         return storageService.post(book_KEY, book)
-    //     }
-    // }
+    function save(mail) {
+        console.log('save, mail')
+        if (mail.id) {
+            return storageService.put(mail_KEY, mail)
+        } else {
+            return storageService.post(mail_KEY, mail)
+        }
+    }

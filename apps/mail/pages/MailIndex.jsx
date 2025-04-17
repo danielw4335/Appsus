@@ -4,7 +4,7 @@ import { MailDetails } from "../MailCmps/MailDetails.jsx"
 import { MailFilter } from "../MailCmps/MailFilter.jsx"
 import { MailFolderList } from "../MailCmps/MailFolderList.jsx"
 import { MailCompose } from "../MailCmps/MailCompose.jsx"
-import { mailService } from "../services/mail.service.js"
+import { MailService } from "../services/mail.service.js"
 import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
 
@@ -17,7 +17,7 @@ export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [searchParams, setSearchParams] = useSearchParams()
     const [isLoading, setIsLoading] = useState(false)
-    const [filterBy, setFilterBy] = useState(mailService.getFilterFromSearchParams(searchParams))
+    const [filterBy, setFilterBy] = useState(MailService.getFilterFromSearchParams(searchParams))
 
 
 
@@ -27,11 +27,10 @@ export function MailIndex() {
         console.log('filterBy', filterBy);
     }, [filterBy])
 
-  
-
     function loadMails() {
-        mailService.query(filterBy)
-            .then(mails => {setMails(mails)
+        MailService.query(filterBy)
+            .then(mails => {
+                setMails(mails)
             })
             .catch(err => console.log('err:', err))
     }
@@ -39,24 +38,25 @@ export function MailIndex() {
     function onSetFilterBy(filterByToEdit) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterByToEdit }))
     }
-   
+
     const loadingClass = isLoading ? 'loading' : ''
     return (
 
         <section>
-            <div>mail app</div>
             {/* <MailDetails /> */}
-            <MailFilter 
-            onSetFilterBy={onSetFilterBy}
-             filterBy={filterBy}
+            <MailFilter
+                onSetFilterBy={onSetFilterBy}
+                filterBy={filterBy}
             />
             {/* <MailFolderList /> */}
             {/* <MailCompose /> */}
-                    <MailList 
-                    mails={mails} 
-                    loadingClass={loadingClass}
-                    />
-    
+            <MailList
+                mails={mails}
+                loadingClass={loadingClass}
+                onReload={loadMails}
+            />
+
+
         </section>
     )
 }
