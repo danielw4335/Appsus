@@ -17,19 +17,37 @@ const gNotes = [
 
 const gImgs = [
   {
-    id: 'n102',
-    type: 'NoteImg',
+    id: utilService.makeId(),
+    type: "NoteImg",
     info: {
-      url: 'assets/img/FatherSonKamehameha.jpg',
-      title: 'Kamehameha'
+      url: "assets/img/FatherSonKamehameha.jpg",
+      title: "Kamehameha",
     },
     style: {
-      backgroundColor: '#e6f7ff',
+      backgroundColor: "#e6f7ff",
     },
     isPinned: false,
+  },
+]
+
+const gTodos = [
+  {
+    id: utilService.makeId(),
+    type: "NoteTodos",
+    info: {
+      todos: [
+        { txt: "Buy milk", doneAt: null },
+        { txt: "Watch one piece", doneAt: 1680000000000 }
+      ]
+    },
+    style: {
+      backgroundColor: "#e0f7fa"
+    },
+    isPinned: false
   }
+  
 ]
 
 function query() {
-  return Promise.resolve([...gNotes, ...gImgs])
+  return Promise.resolve([...gNotes, ...gImgs, ...gTodos])
 }
