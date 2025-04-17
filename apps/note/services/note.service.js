@@ -30,6 +30,21 @@ const gImgs = [
   },
 ]
 
+const gVideos = [
+  {
+    id: utilService.makeId(),
+    type: "NoteVideo",
+    info: {
+      url: "https://www.youtube.com/embed/lTRiuFIWV54",
+      title: "luffy girl",
+    },
+    style: {
+      backgroundColor: "#e6f7ff",
+    },
+    isPinned: false,
+  },
+]
+
 const gTodos = [
   {
     id: utilService.makeId(),
@@ -37,17 +52,16 @@ const gTodos = [
     info: {
       todos: [
         { txt: "Buy milk", doneAt: null },
-        { txt: "Watch one piece", doneAt: 1680000000000 }
-      ]
+        { txt: "Watch one piece", doneAt: 1680000000000 },
+      ],
     },
     style: {
-      backgroundColor: "#e0f7fa"
+      backgroundColor: "#e0f7fa",
     },
-    isPinned: false
-  }
-  
+    isPinned: false,
+  },
 ]
 
 function query() {
-  return Promise.resolve([...gNotes, ...gImgs, ...gTodos])
+  return Promise.resolve([...gNotes, ...gImgs, ...gTodos, ...gVideos])
 }
