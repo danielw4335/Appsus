@@ -4,7 +4,7 @@ import { MailDetails } from "../MailCmps/MailDetails.jsx"
 import { MailFilter } from "../MailCmps/MailFilter.jsx"
 import { MailFolderList } from "../MailCmps/MailFolderList.jsx"
 import { MailCompose } from "../MailCmps/MailCompose.jsx"
-import { MailService } from "../services/mail.service"
+import { mailService } from "../services/mail.service.js"
 
 const { useState, useEffect } = React
 const { Link, useSearchParams } = ReactRouterDOM
@@ -12,24 +12,25 @@ const { Link, useSearchParams } = ReactRouterDOM
 export function MailIndex() {
 
     const [mails, setMails] = useState(null)
+    const [searchParams, setSearchParams] = useSearchParams()
     const [isLoading, setIsLoading] = useState(false)
+    const [filterBy, setFilterBy] = useState(mailService.getFilterFromSearchParams(searchParams))
 
 
     useEffect(() => {
-        loadBooks()
+        loadMails()
     }, [])
 
     function loadMails() {
-        MailService.query()
+        mailService.query()
             .then(mails => setMails(mails))
             .catch(err => console.log('err:', err))
     }
 
-    
     return (
         <section>
       <div>mail app</div>
-        <MailList mails={mails}/>
+        {/* <MailList mails={mails}/> */}
         {/* <MailDetails /> */}
         {/* <MailFilter /> */}
         {/* <MailFolderList /> */}

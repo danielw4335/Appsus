@@ -12,6 +12,7 @@ export const utilService = {
 
 function saveToStorage(key, val) {
     localStorage.setItem(key, JSON.stringify(val))
+    console.log('save To Storage',val)
 }
 
 function loadFromStorage(key) {
