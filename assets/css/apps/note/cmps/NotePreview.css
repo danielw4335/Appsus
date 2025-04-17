@@ -1,7 +1,7 @@
 .note-preview {
-    padding: 1.5em;
-    margin: 1em;
-    border-radius: 0.5em;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
+  display: flex;
+  height: fit-content;
+  max-width: fit-content;
+  padding: 1em;
+  border-radius: 10px;
+}

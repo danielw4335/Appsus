@@ -31,5 +31,5 @@ const gImgs = [
 ]
 
 function query() {
-  return Promise.resolve(gNotes)
+  return Promise.resolve([...gNotes, ...gImgs])
 }
