@@ -19,23 +19,35 @@ export function MailIndex() {
 
     useEffect(() => {
         loadMails()
+        console.log('useEffect');
     }, [])
 
     function loadMails() {
         mailService.query()
-            .then(mails => setMails(mails))
+            .then(mails => {
+                setMails(mails)
+                console.log('set mails', mails);
+
+            })
             .catch(err => console.log('err:', err))
     }
 
+   
+    const loadingClass = isLoading ? 'loading' : ''
     return (
+
         <section>
-      <div>mail app</div>
-        {/* <MailList mails={mails}/> */}
-        {/* <MailDetails /> */}
-        {/* <MailFilter /> */}
-        {/* <MailFolderList /> */}
-        {/* <MailCompose /> */}
+            {console.log('render index')}
+            <div>mail app</div>
+            {/* <MailDetails /> */}
+            {/* <MailFilter /> */}
+            {/* <MailFolderList /> */}
+            {/* <MailCompose /> */}
+                    <MailList 
+                    mails={mails} 
+                    loadingClass={loadingClass}
+                    />
+    
         </section>
     )
 }
-

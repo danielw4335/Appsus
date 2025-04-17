@@ -2,15 +2,19 @@ import { MailPreview } from "../MailCmps/MailPreview.jsx"
 
 
 
-export function MailList({ loadingClass, mails,}) {
+export function MailList( {mails, loadingClass} ) {
+// console.log(loadingClass);
+// console.log(typeof mails);
 
 
-    if (!mails.length) return <div>No Mails To Show...</div>
+    if (!mails || !mails.length) return <div>No Mails To Show...</div>
     return (
 
         <ul className="mail-list container">
              {mails.map(mail => (
-                 <li className={loadingClass} key={mail.id}>
+                 <li className={loadingClass} 
+                 key={mail.id}
+                 >
                      <MailPreview mail={mail} />
                  </li>
              ))}
