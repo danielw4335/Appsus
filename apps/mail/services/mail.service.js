@@ -56,6 +56,7 @@ const loggedinUser = {
                 to: `user@appsus.com`
             }
             
+            
             mails.push(mail)
         }
     }
