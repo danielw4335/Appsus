@@ -44,7 +44,7 @@ const loggedinUser = {
                 createdAt: Date.now(),
                 subject: `${utilService.makeLorem(5)} Mail Subject ${i + 1}`,
                 body: utilService.makeLorem(20),
-                isRead: Math.random() > 0.5,
+                isRead: false,
                 sentAt: Date.now() + i * 1000,
                 removedAt: null,
                 from: `sender${i + 1}@mail.com`,
