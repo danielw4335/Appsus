@@ -1,6 +1,7 @@
 import { NoteTxt } from "./dynamic-cmps/NoteTxt.jsx"
 import { NoteImg } from "./dynamic-cmps/NoteImg.jsx"
 import { NoteTodos } from "./dynamic-cmps/NoteTodos.jsx"
+import { NoteVideo } from "./dynamic-cmps/NoteVideo.jsx"
 
 export function NotePreview({ note }) {
 
@@ -8,6 +9,7 @@ export function NotePreview({ note }) {
     NoteTxt,
     NoteImg,
     NoteTodos,
+    NoteVideo,
   }
   const DynamicCmp = cmpMap[note.type]
 
