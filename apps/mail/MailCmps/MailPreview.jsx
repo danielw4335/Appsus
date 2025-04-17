@@ -3,7 +3,7 @@ import { MailService } from "../services/mail.service"
 const { useState, useEffect } = React
 
 
-export function MailPreview({ mail, onMarkAsRead }) {
+export function MailPreview({ mail, onMarkAsRead , onDeleteMail}) {
     const [info, setInfo] = useState(null)
 
     useEffect(() => {
@@ -86,6 +86,11 @@ export function MailPreview({ mail, onMarkAsRead }) {
             <p className="pre-sub" >{sub}</p>
             <p className="pre-body" >-{txt}</p>
             <p className="pre-time" >{date}</p>
+            
+            <div className="box-font-after">
+                <a className="fa-regular fa-trash-can"  onClick={() => onDeleteMail(mail.id)}></a>
+            </div>
+
         </div>
 
     )

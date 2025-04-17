@@ -75,7 +75,6 @@ function getMonthName(date) {
 }
 
 function getTruthyValues(obj) {
-    console.log('obj', obj)
     const newObj = {}
     for (const key in obj) {
         const value = obj[key]
@@ -83,6 +82,6 @@ function getTruthyValues(obj) {
             newObj[key] = value
         }
     }
-    console.log('newObj', newObj)
+    console.log('filter from url', newObj)
     return newObj
 }

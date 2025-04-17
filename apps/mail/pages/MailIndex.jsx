@@ -24,20 +24,25 @@ export function MailIndex() {
     useEffect(() => {
         setSearchParams(utilService.getTruthyValues(filterBy))
         loadMails()
-        console.log('filterBy', filterBy);
+        console.log('useEffect' , filterBy);
+        
     }, [filterBy])
-
+    
     function loadMails() {
         MailService.query(filterBy)
-            .then(mails => {
-                setMails(mails)
-            })
-            .catch(err => console.log('err:', err))
+        .then(mails => {
+            setMails(mails)
+        })
+        .catch(err => console.log('err:', err))
+        console.log('loadMails' , filterBy);
     }
 
-    function onSetFilterBy(filterByToEdit) {
+    function onSetFilterBy(filterByToEdit) {        
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterByToEdit }))
     }
+
+
+
 
     const loadingClass = isLoading ? 'loading' : ''
     return (
@@ -48,7 +53,7 @@ export function MailIndex() {
                 onSetFilterBy={onSetFilterBy}
                 filterBy={filterBy}
             />
-            {/* <MailFolderList /> */}
+            <MailFolderList />
             {/* <MailCompose /> */}
             <MailList
                 mails={mails}
