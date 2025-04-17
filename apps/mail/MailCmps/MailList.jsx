@@ -1,24 +1,40 @@
 import { MailPreview } from "../MailCmps/MailPreview.jsx"
+import { MailService } from "../services/mail.service.js"
 
+const { useState, useEffect } = React
 
+export function MailList({ mails, loadingClass, onReload }) {
+    const [mailList, setMailList] = useState([])
+  
+    useEffect(() => {
+        if (mails) setMailList(mails)
+      }, [mails])
+      
 
-export function MailList({ mails, loadingClass }) {
-    // console.log(loadingClass);
-    // console.log(typeof mails);
-
+    function onMarkAsRead(mailId) {
+      MailService.markAsRead(mailId).then(() => {
+        setMailList(prev =>
+          prev.map(mail =>
+            mail.id === mailId ? { ...mail, isRead: true } : mail
+          )
+        )
+        onReload() 
+      })
+    }
+  
 
     if (!mails || !mails.length) return <div>No Mails To Show...</div>
     return (
 
         <ul className="mail-list container">
-            {mails.map(mail => (
-                <div
-                    className={loadingClass}
-                    key={mail.id}>
-                    <MailPreview mail={mail} />
-                    </div>
+            {mailList.map(mail => (
+               <MailPreview
+               key={mail.id}
+               mail={mail}
+               className={loadingClass}
+               onMarkAsRead={onMarkAsRead}
+             />
             ))}
-            <div>Mail list</div>
         </ul>
     )
 
