@@ -7,6 +7,7 @@ export function useNotes(){
     const [notes, setNotes] = useState(null)
 
     useEffect(() => {
+        console.log('Running useEffect')
         noteService.query().then(setNotes)
     }, [])
     return notes

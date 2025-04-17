@@ -9,8 +9,8 @@ export function NoteIndex() {
     
     if (!notes) return <div>Loading notes...</div>
     return (
-        <section>
-            <NoteList />
+        <section className="note-index">
+            <NoteList notes={notes}/>
         <div>note app</div>
         </section>
     )
