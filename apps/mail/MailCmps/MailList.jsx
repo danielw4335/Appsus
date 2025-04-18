@@ -13,8 +13,9 @@ export function MailList({ mails, loadingClass, onReload }) {
       
 
     function onDeleteMail(mailId) {
+    
         MailService.deleteMail(mailId).then(() => {
-            onReload()
+            // onReload()
         }).catch(err => console.error('Failed to delete', err))
     }
 

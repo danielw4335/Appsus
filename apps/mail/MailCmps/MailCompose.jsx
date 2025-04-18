@@ -1,19 +1,70 @@
+import { MailService } from "../services/mail.service.js"
 
 
+const { useState, useEffect } = React
 
-export function MailCompose({ onClose }) {
-    return (
-      <section className="mail-compose">
-        <button className="close-compose" onClick={onClose}>X</button>
-        <form action="">
 
-<input type="email" name="Recipients" value={a} />
+export function MailCompose({ onClose, loadMails }) {
 
-<input type="text" name="Subject" value={a} />
+  const [formData, setFormData] = useState('')
 
-<input type="text" value={a} />
-<button className="fil-btn">Send</button>
-        </form>
-      </section>
-    )
+  const  data = {
+      mail: '',
+        Subject: '',
+          body: ''
+    }
+
+  useEffect(() => {
+    setFormData(data)   
+}, [])
+
+  function handleChange(ev) {
+    const { name, value } = ev.target
+    setFormData(prev => ({ ...prev, [name]: value }))
   }
+
+  function onSubmitSend(ev) {
+    ev.preventDefault()
+    console.log(formData)
+    MailService.addMail(formData)
+    onClose()
+    loadMails()
+  }
+
+
+  return (
+    <section className="mail-compose">
+      <div className="header-message">
+
+      <button className="close-compose" onClick={onClose}>X</button>
+      </div>
+      <form onSubmit={onSubmitSend}>
+        <input
+        className="input-mail"
+          type="email"
+          name="mail"
+          value={formData.mail}
+          onChange={handleChange}
+        />
+
+        <input
+        className="input-sub"
+          type="text"
+          name="Subject"
+          value={formData.Subject}
+          onChange={handleChange}
+        />
+
+        <input
+        className="input-body"
+          type="text"
+          name="body"
+          value={formData.body}
+          onChange={handleChange}
+        />
+
+        <button className="fil-btn">Send</button>
+      </form>
+    </section>
+  )
+}

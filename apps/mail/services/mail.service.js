@@ -11,6 +11,7 @@ export const MailService = {
     get,
     deleteMail,
     save,
+    addMail,
     // remove
 }
 
@@ -31,7 +32,24 @@ const mail = {
     to: 'user@appsus.com'
 }
 
-
+function addMail(data){
+console.log(data)
+const mail = {
+    // id: utilService.makeId(),
+    createdAt: Date.now(),
+    subject: data.Subject,
+    body: data.body,
+    isRead: false,
+    sentAt: Date.now(),
+    removedAt: null,
+    from: loggedinUser.email,
+    to: data.mail,
+    status: 'sent',
+    isStared: false,
+    lables: []
+}
+save(mail)
+}
 
 function _createMails(count = 5) {
     let mails = utilService.loadFromStorage(mail_KEY) || []
@@ -52,8 +70,6 @@ function _createMails(count = 5) {
                 isStared: Math.random() > 0.5,
                 lables: []
             }
-
-            console.log('make a mails', mails)
             mails.push(mail)
         }
     }
@@ -126,6 +142,7 @@ function get(mailId) {
 // }
 
 function save(mail) {
+    console.log('hi save')
     if (mail.id) {
         return storageService.put(mail_KEY, mail)
     } else {
