@@ -9,8 +9,9 @@
     border-radius: 8px;
     background-color: white;
     display: flex;
-    /* justify-content: center; */
+    justify-content: space-around;
     flex-direction: column;
+    justify-content: flex-end;
 }
 
 .header-message{
@@ -18,7 +19,14 @@
     width: 100%;
     background-color: #F8FAFD;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center
+}
+
+.header-message p{
+    font-family: var(--font-mail);
+    font-weight: var(--Bold);
+    color: black;
 }
 
 .mail-compose button{
@@ -26,21 +34,45 @@
 }
 
 .close-compose{
-  align-self: flex-end;
+  height: 50%;
+  margin: 1em;
+  border: none;
+  background-color: #F8FAFD;
 }
 
 .input-mail{
     width: 100%;
+    height: 3em;
     border: none;
     border-bottom: inset;
 }
 
 .input-sub{
     width: 100%;
+    height: 3em;
     border: none;
     border-bottom: inset;
 }
 
 .input-body{
 width: 100%;
+height: 17em;
+border: none;
+    border-bottom: inset;
+}
+
+.nav-message{
+    margin: 10px ;
+}
+
+.fil-btn{
+    background-color: #297BE6;
+    border-radius: 1.4em;
+    height: 2.35em;
+width: 6.5em;
+color: #FFFFFF;
+font-family: var(--font-mail);
+font-weight: var(--medium);
+font-size: 1em;
+padding-right: 2em;
 }

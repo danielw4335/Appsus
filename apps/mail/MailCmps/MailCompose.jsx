@@ -35,7 +35,7 @@ export function MailCompose({ onClose, loadMails }) {
   return (
     <section className="mail-compose">
       <div className="header-message">
-
+<p>New message</p>
       <button className="close-compose" onClick={onClose}>X</button>
       </div>
       <form onSubmit={onSubmitSend}>
@@ -43,6 +43,7 @@ export function MailCompose({ onClose, loadMails }) {
         className="input-mail"
           type="email"
           name="mail"
+          placeholder="Recipients"
           value={formData.mail}
           onChange={handleChange}
         />
@@ -51,6 +52,7 @@ export function MailCompose({ onClose, loadMails }) {
         className="input-sub"
           type="text"
           name="Subject"
+           placeholder="Subject"
           value={formData.Subject}
           onChange={handleChange}
         />
@@ -62,8 +64,9 @@ export function MailCompose({ onClose, loadMails }) {
           value={formData.body}
           onChange={handleChange}
         />
-
+<div className="nav-message">
         <button className="fil-btn">Send</button>
+</div>
       </form>
     </section>
   )
