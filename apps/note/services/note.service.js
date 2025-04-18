@@ -16,7 +16,6 @@ function query() {
   return Promise.resolve(gNotes)
 }
 
-
 function _loadNotes() {
   const notesFromStorage = utilService.loadFromStorage(STORAGE_KEY)
   if (notesFromStorage) return notesFromStorage
@@ -63,11 +62,21 @@ function _loadNotes() {
     },
     {
       id: utilService.makeId(),
-      type: 'NoteCanvas',
-      info: {txt: 'Canvas!'},
+      type: "NoteCanvas",
+      info: { txt: "Canvas" },
       style: { backgroundColor: "#e0f7fa" },
       isPinned: false,
-    }
+    },
+    {
+      id: utilService.makeId(),
+      type: "NoteAudio",
+      info: {
+        url: "assets/audio/wow-sound.mp3",
+        title: "Wow Sound",
+      },
+      style: { backgroundColor: "#e0f7fa" },
+      isPinned: false,
+    },
   ]
 }
 
@@ -78,7 +87,7 @@ function add(note) {
 }
 
 function remove(noteId) {
-  const idx = gNotes.findIndex(note => note.id === noteId)
+  const idx = gNotes.findIndex((note) => note.id === noteId)
   if (idx !== -1) {
     gNotes.splice(idx, 1)
     utilService.saveToStorage(STORAGE_KEY, gNotes)
@@ -86,9 +95,9 @@ function remove(noteId) {
   return Promise.resolve()
 }
 
-function update(noteToUpdate){
-  const idx = gNotes.findIndex(note => note.id === noteToUpdate.id)
-  if (idx !== -1){
+function update(noteToUpdate) {
+  const idx = gNotes.findIndex((note) => note.id === noteToUpdate.id)
+  if (idx !== -1) {
     gNotes[idx] = noteToUpdate
     utilService.saveToStorage(STORAGE_KEY, gNotes)
   }

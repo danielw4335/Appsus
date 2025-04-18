@@ -3,6 +3,7 @@ import { NoteImg } from "./dynamic-cmps/NoteImg.jsx"
 import { NoteTodos } from "./dynamic-cmps/NoteTodos.jsx"
 import { NoteVideo } from "./dynamic-cmps/NoteVideo.jsx"
 import { NoteCanvas } from "./dynamic-cmps/NoteCanvas.jsx"
+import { NoteAudio } from "./dynamic-cmps/NoteAudio.jsx"
 
 import { noteService } from "../services/note.service.js"
 import { NoteIndex } from "../pages/NoteIndex.jsx"
@@ -17,12 +18,14 @@ export function NotePreview({
   onChangeColor,
   onAddNote,
 }) {
+  
   const cmpMap = {
     NoteTxt: NoteTxt,
     NoteImg,
     NoteTodos,
     NoteVideo,
     NoteCanvas,
+    NoteAudio,
   }
 
   const DynamicCmp = cmpMap[note.type]
@@ -54,8 +57,6 @@ export function NotePreview({
       className="note-preview"
       style={{ backgroundColor: note.style.backgroundColor }}
     >
-      {/* <NoteCanvas info={note.info} onAddNote={onAddNote} /> */}
-      {/* <DynamicCmp info={note.info} /> */}
 
       {note.type === "NoteCanvas" ? (
         <NoteCanvas info={note.info} onAddNote={onAddNote} />
