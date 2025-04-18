@@ -4,6 +4,7 @@ import { NoteTodos } from "./dynamic-cmps/NoteTodos.jsx"
 import { NoteVideo } from "./dynamic-cmps/NoteVideo.jsx"
 import { NoteCanvas } from "./dynamic-cmps/NoteCanvas.jsx"
 import { NoteAudio } from "./dynamic-cmps/NoteAudio.jsx"
+import { NoteMap } from "./dynamic-cmps/NoteMap.jsx"
 
 import { noteService } from "../services/note.service.js"
 import { NoteIndex } from "../pages/NoteIndex.jsx"
@@ -18,7 +19,6 @@ export function NotePreview({
   onChangeColor,
   onAddNote,
 }) {
-  
   const cmpMap = {
     NoteTxt: NoteTxt,
     NoteImg,
@@ -26,6 +26,7 @@ export function NotePreview({
     NoteVideo,
     NoteCanvas,
     NoteAudio,
+    NoteMap: NoteMap,
   }
 
   const DynamicCmp = cmpMap[note.type]
@@ -57,7 +58,6 @@ export function NotePreview({
       className="note-preview"
       style={{ backgroundColor: note.style.backgroundColor }}
     >
-
       {note.type === "NoteCanvas" ? (
         <NoteCanvas info={note.info} onAddNote={onAddNote} />
       ) : (
@@ -79,21 +79,23 @@ export function NotePreview({
           ))}
         </div>
       )}
-      <button onClick={() => onDeleteNote(note)}>
-        <a className="fa-solid fa-trash"></a>
-      </button>
-      <button onClick={() => onDuplicateNote(note)}>
-        <a className="fa-solid fa-copy"></a>
-      </button>
-      <button onClick={() => onTogglePin(note)}>
-        <a className="fa-solid fa-thumbtack"></a>
-      </button>
-      <button onClick={() => setIsPickerOpen((prev) => !prev)}>
-        <a className="fa-solid fa-palette"></a>
-      </button>
-      <button onClick={onSendToMail}>
-        <a className="fa-solid fa-envelope"></a>
-      </button>
+      <div className="bts-note">
+        <button onClick={() => onDeleteNote(note)}>
+          <a className="fa-solid fa-trash"></a>
+        </button>
+        <button onClick={() => onDuplicateNote(note)}>
+          <a className="fa-solid fa-copy"></a>
+        </button>
+        <button onClick={() => onTogglePin(note)}>
+          <a className="fa-solid fa-thumbtack"></a>
+        </button>
+        <button onClick={() => setIsPickerOpen((prev) => !prev)}>
+          <a className="fa-solid fa-palette"></a>
+        </button>
+        <button onClick={onSendToMail}>
+          <a className="fa-solid fa-envelope"></a>
+        </button>
+      </div>
     </section>
   )
 }
