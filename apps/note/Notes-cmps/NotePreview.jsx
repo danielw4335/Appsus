@@ -26,7 +26,7 @@ export function NotePreview({
     NoteVideo,
     NoteCanvas,
     NoteAudio,
-    NoteMap: NoteMap,
+    NoteMap,
   }
 
   const DynamicCmp = cmpMap[note.type]
