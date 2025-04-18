@@ -1,0 +1,46 @@
+/* MailCompose */
+
+.mail-compose{
+    position: fixed;
+    width: 38%;
+    height: 20em;
+    bottom: 0;
+    right: 3em;
+    border-radius: 8px;
+    background-color: white;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+.header-message{
+    display: flex;
+    width: 100%;
+    background-color: #F8FAFD;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.mail-compose button{
+
+}
+
+.close-compose{
+  align-self: flex-end;
+}
+
+.input-mail{
+    width: 100%;
+    border: none;
+    border-bottom: inset;
+}
+
+.input-sub{
+    width: 100%;
+    border: none;
+    border-bottom: inset;
+}
+
+.input-body{
+width: 100%;
+}

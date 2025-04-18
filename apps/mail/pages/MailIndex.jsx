@@ -62,7 +62,9 @@ export function MailIndex() {
             />
 
 {isComposing && (
-  <MailCompose onClose={() => setIsComposing(false)} />
+  <MailCompose
+  loadMails={loadMails}
+  onClose={() => setIsComposing(false)} />
 )}
 
         </section>
