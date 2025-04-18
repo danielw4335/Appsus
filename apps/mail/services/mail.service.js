@@ -12,6 +12,7 @@ export const MailService = {
     deleteMail,
     save,
     addMail,
+    getMails,
     // remove
 }
 
@@ -76,7 +77,9 @@ function _createMails(count = 5) {
     utilService.saveToStorage(mail_KEY, mails)
 }
 
-
+function getMails(){
+    return utilService.loadFromStorage(mail_KEY) || []
+}
 
 function query(filterBy = {}) {
     return storageService.query(mail_KEY)

@@ -1,10 +1,23 @@
 const { useState, useEffect } = React
 
-export function MailFolderList({ onSetFilterBy }) {
+export function MailFolderList({ onSetFilterBy, mailCountByStatus }) {
     const [isOpen, setIsOpen] = useState(true)
+    const [res, setRes] = useState(null)
   
+    useEffect(() => {
+      
+  },[])
+
     function toggleSidebar() {
       setIsOpen(prev => !prev)
+      if (!mailCountByStatus) return null
+      setRes({
+        inbox: mailCountByStatus.inbox || '',
+        sent: mailCountByStatus.sent || '',
+        drafts: mailCountByStatus.drafts || '',
+        trash: mailCountByStatus.trash || ''
+      })
+      console.log(res);
     }
   
     function onClickFolder(status) {
@@ -22,7 +35,7 @@ export function MailFolderList({ onSetFilterBy }) {
         <button className="hamburger-btn" onClick={toggleSidebar}>☰</button>
   
         <div className="sidebar-item" onClick={() => onClickFolder('inbox')}>
-        <a><i className="fa-solid fa-inbox"></i> {isOpen && 'Inbox'}</a>
+        <a><i className="fa-solid fa-inbox"></i> {isOpen && `Inbox ${res.inbox? res.inbox : ''}` }</a>
         </div>
 
         <div className="sidebar-item" onClick={() => onClickFolder('sent')}>

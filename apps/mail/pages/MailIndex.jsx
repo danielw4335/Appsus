@@ -15,6 +15,7 @@ const { Link, useSearchParams } = ReactRouterDOM
 export function MailIndex() {
 
     const [mails, setMails] = useState(null)
+    const [mailCountByStatus, setMailCountByStatus] = useState({})
     const [searchParams, setSearchParams] = useSearchParams()
     const [isLoading, setIsLoading] = useState(false)
     const [filterBy, setFilterBy] = useState(MailService.getFilterFromSearchParams(searchParams))
@@ -25,20 +26,34 @@ export function MailIndex() {
     useEffect(() => {
         setSearchParams(utilService.getTruthyValues(filterBy))
         loadMails()
+     
     }, [filterBy])
 
     function loadMails() {
         MailService.query(filterBy)
             .then(mails => {
                 setMails(mails)
+                .then(() => {
+                    resOfstatus() 
+                })
             }).catch(err => console.error('Failed to load', err))
+    }
+
+    function resOfstatus() {
+           let mails = MailService.getMails()
+          const result = mails.reduce((acc, mail) => {
+            const status = mail.status || 'unknown'
+            acc[status] = (acc[status] || 0) + 1
+            return acc
+        }, {})
+        setMailCountByStatus(result)
     }
 
     function onSetFilterBy(filterByToEdit) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterByToEdit }))
     }
 
-    function onSetIsComposing(filterByToEdit) {
+    function onSetIsComposing() {
         setIsComposing(true)
     }
 
@@ -57,6 +72,7 @@ export function MailIndex() {
             />
             <div className="mail-body">
                 <MailFolderList
+                mailCountByStatus={mailCountByStatus}
                     onSetFilterBy={onSetFilterBy}/>
                     
                 <MailList
