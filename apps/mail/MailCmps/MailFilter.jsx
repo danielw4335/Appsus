@@ -1,7 +1,7 @@
 const { useState, useEffect } = React
 const { Link } = ReactRouterDOM
 
-export function MailFilter({ filterBy, onSetFilterBy }) {
+export function MailFilter({ filterBy, onSetFilterBy, onSetIsComposing}) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
     
@@ -37,6 +37,9 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
 
     return (
         <section className="mail-filter container">
+
+<a class="fa-solid fa-pencil compose-btn" onClick={() => onSetIsComposing(true)}></a>
+
             <form onSubmit={onSubmitFilter}>
                 <label htmlFor="txt"></label>
                 <input onChange={handleChange} value={txt} name="txt" id="txt" type="text"

@@ -8,7 +8,7 @@
 @import './basics/base.css';
 @import './basics/helpers.css';
 @import './basics/buttons-notes.css';
-/* @import './basics/layout.css'; */
+/* @import './basics/layout.css'; *
 
 /* Pages */
 @import './pages/home.css';
@@ -32,8 +32,11 @@
 @import './apps/note/cmps/NoteTodos.css';
 @import './apps/note/cmps/NoteCanvas.css';
 
+
 /* Cmps mail*/
+ @import './apps/mail/pages/layout.css'; 
 @import './apps/mail/cmps/MailList.css';
 @import './apps/mail/cmps/MailPreview.css';
 @import './apps/mail/cmps/MailFilter.css';
 @import './apps/mail/cmps/MailCompose.css';
+@import './apps/mail/cmps/MaiFolderList.css';
