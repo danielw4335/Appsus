@@ -77,6 +77,16 @@ function _loadNotes() {
       style: { backgroundColor: "#e0f7fa" },
       isPinned: false,
     },
+    {
+      id: utilService.makeId(),
+      type: 'NoteMap',
+      info: {
+        lng: 34.7818,
+        lat: 32.0853
+      },
+      style: { backgroundColor: "#e0f7fa" },
+      isPinned: false,
+    },
   ]
 }
 

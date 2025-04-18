@@ -1,6 +1,6 @@
 
 .note-preview {
-  display: flex;
+  /* display: flex; */
   height: fit-content;
   max-width: fit-content;
   padding: 1em;
