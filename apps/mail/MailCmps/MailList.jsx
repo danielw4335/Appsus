@@ -8,14 +8,14 @@ export function MailList({ mails, loadingClass, onReload }) {
     function onMarkAsRead(mailId) {
         MailService.markAsRead(mailId).then(() => {
           onReload()
-        })
+        }).catch(err => console.error('Failed to mark', err))
       }
       
 
     function onDeleteMail(mailId) {
         MailService.deleteMail(mailId).then(() => {
             onReload()
-        })
+        }).catch(err => console.error('Failed to delete', err))
     }
 
 

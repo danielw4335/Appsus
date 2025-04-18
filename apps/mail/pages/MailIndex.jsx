@@ -18,26 +18,23 @@ export function MailIndex() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [isLoading, setIsLoading] = useState(false)
     const [filterBy, setFilterBy] = useState(MailService.getFilterFromSearchParams(searchParams))
+    const [isComposing, setIsComposing] = useState(false)
 
 
 
     useEffect(() => {
         setSearchParams(utilService.getTruthyValues(filterBy))
         loadMails()
-        console.log('useEffect' , filterBy);
-        
     }, [filterBy])
-    
+
     function loadMails() {
         MailService.query(filterBy)
-        .then(mails => {
-            setMails(mails)
-        })
-        .catch(err => console.log('err:', err))
-        console.log('loadMails' , filterBy);
+            .then(mails => {
+                setMails(mails)
+            }).catch(err => console.error('Failed to load', err))
     }
 
-    function onSetFilterBy(filterByToEdit) {        
+    function onSetFilterBy(filterByToEdit) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterByToEdit }))
     }
 
@@ -48,6 +45,9 @@ export function MailIndex() {
     return (
 
         <section>
+            <button className="compose-btn" onClick={() => setIsComposing(true)}>
+                Compose
+            </button>
             {/* <MailDetails /> */}
             <MailFilter
                 onSetFilterBy={onSetFilterBy}
@@ -61,6 +61,9 @@ export function MailIndex() {
                 onReload={loadMails}
             />
 
+{isComposing && (
+  <MailCompose onClose={() => setIsComposing(false)} />
+)}
 
         </section>
     )

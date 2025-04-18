@@ -14,7 +14,6 @@ export const MailService = {
     // remove
 }
 
-
 const loggedinUser = {
     email: 'user@appsus.com',
     fullname: 'Mahatma Appsus'
@@ -72,8 +71,6 @@ function query(filterBy = {}) {
                 mails = mails.filter(mail => regExp.test(mail.subject || mail.body || mail.from || mail.to))
             }
             if (filterBy.status) {
-                console.log(filterBy.status) 
-                console.log(mails) 
                 mails = mails.filter(mail => filterBy.status === mail.status)
             }
 

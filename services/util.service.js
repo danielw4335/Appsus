@@ -82,6 +82,5 @@ function getTruthyValues(obj) {
             newObj[key] = value
         }
     }
-    console.log('filter from url', newObj)
     return newObj
 }
