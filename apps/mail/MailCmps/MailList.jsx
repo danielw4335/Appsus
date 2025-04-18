@@ -4,36 +4,33 @@ import { MailService } from "../services/mail.service.js"
 const { useState, useEffect } = React
 
 export function MailList({ mails, loadingClass, onReload }) {
-    const [mailList, setMailList] = useState([])
-  
-    useEffect(() => {
-        if (mails) setMailList(mails)
-      }, [mails])
-      
 
     function onMarkAsRead(mailId) {
-      MailService.markAsRead(mailId).then(() => {
-        setMailList(prev =>
-          prev.map(mail =>
-            mail.id === mailId ? { ...mail, isRead: true } : mail
-          )
-        )
-        onReload() 
-      })
+        MailService.markAsRead(mailId).then(() => {
+          onReload()
+        }).catch(err => console.error('Failed to mark', err))
+      }
+      
+
+    function onDeleteMail(mailId) {
+        MailService.deleteMail(mailId).then(() => {
+            onReload()
+        }).catch(err => console.error('Failed to delete', err))
     }
-  
+
 
     if (!mails || !mails.length) return <div>No Mails To Show...</div>
     return (
 
         <ul className="mail-list container">
-            {mailList.map(mail => (
-               <MailPreview
-               key={mail.id}
-               mail={mail}
-               className={loadingClass}
-               onMarkAsRead={onMarkAsRead}
-             />
+          {mails.map(mail => (
+                <MailPreview
+                    key={mail.id}
+                    mail={mail}
+                    className={loadingClass}
+                    onMarkAsRead={onMarkAsRead}
+                    onDeleteMail={onDeleteMail}
+                />
             ))}
         </ul>
     )

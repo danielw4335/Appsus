@@ -2,12 +2,11 @@ const { useState, useEffect } = React
 const { Link } = ReactRouterDOM
 
 export function MailFilter({ filterBy, onSetFilterBy }) {
-    console.log(filterBy);
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
-
+    
     useEffect(() => {
-        onSetFilterBy(filterByToEdit)
+        onSetFilterBy(filterByToEdit)   
     }, [filterByToEdit])
 
     function handleChange({ target }) {
@@ -26,14 +25,11 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
         }
 
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
-        console.log(filterByToEdit);
-        
     }
-    
+
     function onSubmitFilter(ev) {
         ev.preventDefault()
         onSetFilterBy(filterByToEdit)
-        console.log(filterByToEdit);
     }
 
 
@@ -43,8 +39,8 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
         <section className="mail-filter container">
             <form onSubmit={onSubmitFilter}>
                 <label htmlFor="txt"></label>
-                <input onChange={handleChange} value={txt} name="txt" id="txt" type="text" 
-                placeholder="Search mail"/>
+                <input onChange={handleChange} value={txt} name="txt" id="txt" type="text"
+                    placeholder="Search mail" />
                 {/* <label htmlFor="minPrice">Min Price</label>
                 <input onChange={handleChange} value={minPrice || ''} name="minPrice" id="minPrice" type="number" />
 
