@@ -1,6 +1,8 @@
 // import { useNotes } from "../Notes-cmps/custom-hooks/useNotes.js"
 import { NoteList } from "../Notes-cmps/NoteList.jsx"
 import { NoteAdd } from "../Notes-cmps/NoteAdd.jsx"
+import { NoteFilter } from "../Notes-cmps/dynamic-cmps/NoteFilter.jsx"
+
 import { noteService } from "../services/note.service.js"
 import { utilService } from "../../../services/util.service.js"
 
@@ -8,6 +10,8 @@ const { useState, useEffect } = React
 
 export function NoteIndex() {
   const [notes, setNotes] = useState(null)
+  const [filterBy, setFilterBy] = useState({txt: '', type: "all"})
+
   // const notes = useNotes()
 
   useEffect(() => {
@@ -50,12 +54,28 @@ export function NoteIndex() {
     noteService.update(updatedNote).then(loadNotes)
   }
 
-  if (!notes) return <div>Loading notes...</div>
-  return (
+ function getFilteredNotes(notes, filterBy){
+  return notes.filter(note => {
+    const matchText = filterBy.txt === '' || 
+    (note.info.txt && note.info.txt.toLowerCase().includes(filterBy.txt.toLowerCase()))
+
+    const matchType = 
+    filterBy.type === 'all' ||
+    note.type.toLowerCase().includes(filterBy.type.toLowerCase())
+    
+    return matchText && matchType
+  })
+ } 
+ 
+ if (!notes) return <div>Loading notes...</div>
+ const filteredNotes = getFilteredNotes(notes, filterBy)
+ return (
     <section className="note-index">
       <NoteAdd onAddNote={onAddNote} />
+      <NoteFilter onSetFilter={setFilterBy} />
       <NoteList
-        notes={notes}
+        notes={filteredNotes}
+        // notes={notes}
         onDeleteNote={onDeleteNote}
         onDuplicateNote={onDuplicateNote}
         onTogglePin={onTogglePin}
