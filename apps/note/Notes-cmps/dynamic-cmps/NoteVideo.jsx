@@ -1,4 +1,4 @@
-export function NoteVideo({ info: { url, title } }) {
+export function NoteVideo({ info: { url, title, txt } }) {
   return (
     <section className="note-video">
       <iframe
@@ -10,6 +10,7 @@ export function NoteVideo({ info: { url, title } }) {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       ></iframe>
+      {txt && <p>{txt}</p>}
     </section>
   )
 }

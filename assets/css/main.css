@@ -8,7 +8,14 @@
 @import './basics/base.css';
 @import './basics/helpers.css';
 @import './basics/buttons-notes.css';
+
+
 /* @import './basics/layout.css'; *
+
+/* Note - Basic  */
+@import './apps/note/basic/nav-bar.css';
+@import './apps/note/basic/mq.css';
+
 
 /* Pages */
 @import './pages/home.css';

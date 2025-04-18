@@ -1,8 +1,9 @@
 
 .note-preview {
-  /* display: flex; */
+  display: flex;
+  flex-direction: column;
   height: fit-content;
-  max-width: fit-content;
+  max-width: 300px;
   padding: 1em;
   border-radius: 8px;
   background-color: #fff;
@@ -22,4 +23,37 @@
   border-radius: 50%;
   border: 1px solid #ccc;
   cursor: pointer;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.note-preview {
+  max-width: 95%;
+  font-size: 0.85rem;
+  padding: 0.75rem;
+}
+
+.note-preview button {
+  transform: scale(0.85);
+}
+
+.note-preview img,
+.note-preview iframe,
+.note-preview canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+.pinned-notes,
+.other-notes {
+  gap: 1rem;
+}
+
+.top-bar input,
+.top-bar select {
+  font-size: 0.9rem;
+  padding: 0.5rem;
 }

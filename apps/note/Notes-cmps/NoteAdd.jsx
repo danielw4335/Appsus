@@ -11,8 +11,6 @@ export function NoteAdd({ onAddNote }) {
   const [videoFile, setVideoFile] = useState(null)
 
   function onAdd(ev) {
-    console.log("noteType:", noteType)
-    console.log("todosTxt:", todosTxt)
 
     ev.preventDefault()
     let note
@@ -32,6 +30,7 @@ export function NoteAdd({ onAddNote }) {
         info: {
           url,
           title: "YouTube Video",
+          txt,
         },
         style: { backgroundColor: "#fff" },
         isPinned: false,
@@ -45,6 +44,7 @@ export function NoteAdd({ onAddNote }) {
         info: {
           url: URL.createObjectURL(imgFile),
           title: imgFile.name || "My image",
+          txt,
         },
         style: { backgroundColor: "#fff" },
         isPinned: false,
@@ -58,6 +58,7 @@ export function NoteAdd({ onAddNote }) {
         type: "NoteTodos",
         info: {
           todos: todosTxt.split(",").map((txt) => ({ txt, doneAt: null })),
+          txt,
         },
         style: { backgroundColor: "#fff" },
         isPinned: false,
@@ -70,6 +71,7 @@ export function NoteAdd({ onAddNote }) {
         info: {
           lng: 34.7818,
           lat: 32.0853,
+          txt,
         },
         style: { backgroundColor: "#fff" },
         isPinned: false,
@@ -79,7 +81,7 @@ export function NoteAdd({ onAddNote }) {
       note = {
         id: utilService.makeId(),
         type: "NoteCanvas",
-        info: { txt: "Canvas" },
+        info: txt,
         style: { backgroundColor: "#fff" },
         isPinned: false,
       }
@@ -91,6 +93,7 @@ export function NoteAdd({ onAddNote }) {
         info: {
           url: URL.createObjectURL(audioFile),
           title: audioFile.name || "My adio",
+          txt,
         },
         style: { backgroundColor: "#fff" },
         isPinned: false,

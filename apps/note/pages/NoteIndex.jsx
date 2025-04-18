@@ -74,18 +74,61 @@ export function NoteIndex() {
   const filteredNotes = getFilteredNotes(notes, filterBy)
   return (
     <section className="note-index">
-      <NoteAdd onAddNote={onAddNote} />
-      <NoteFilter onSetFilter={setFilterBy} />
-      <NoteList
-        notes={filteredNotes}
-        // notes={notes}
-        onDeleteNote={onDeleteNote}
-        onDuplicateNote={onDuplicateNote}
-        onTogglePin={onTogglePin}
-        onChangeColor={onChangeColor}
-        onAddNote={onAddNote}
-      />
-      <div>note app</div>
+      <aside className="side-nav">
+        <ul>
+          <li>
+            <i className="fa-regular fa-lightbulb"></i> Notes
+          </li>
+          <li>
+            <i className="fa-regular fa-bell"></i> Reminders
+          </li>
+          <li>
+            <i className="fa-regular fa-pen-to-square"></i> Edit Labels
+          </li>
+          <li>
+            <i className="fa-regular fa-box-archive"></i> Archive
+          </li>
+          <li>
+            <i className="fa-regular fa-trash-can"></i> Trash
+          </li>
+        </ul>
+      </aside>
+      <section className="main">
+        <div className="top-bar">
+          <NoteAdd onAddNote={onAddNote} />
+          <NoteFilter onSetFilter={setFilterBy} />
+        </div>
+
+        {/* Main Content  */}
+        <section className="main-content">
+          {filteredNotes.some((note) => note.isPinned) && (
+          <section className="pinned-notes">
+              <h2>Pinned</h2>
+              <NoteList
+                notes={filteredNotes.filter((note) => note.isPinned)}
+                onDeleteNote={onDeleteNote}
+                onDuplicateNote={onDuplicateNote}
+                onTogglePin={onTogglePin}
+                onChangeColor={onChangeColor}
+                onAddNote={onAddNote}
+              />
+            </section>
+          )}
+
+          {/* other notes  */}
+          <section className="other-notes">
+            <h2>Others</h2>
+            <NoteList
+              notes={filteredNotes.filter((note) => !note.isPinned)}
+              onDeleteNote={onDeleteNote}
+              onDuplicateNote={onDuplicateNote}
+              onTogglePin={onTogglePin}
+              onChangeColor={onChangeColor}
+              onAddNote={onAddNote}
+            />
+          </section>
+        </section>
+      </section>
     </section>
   )
 }
