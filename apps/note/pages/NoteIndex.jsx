@@ -2,6 +2,7 @@
 import { NoteList } from "../Notes-cmps/NoteList.jsx"
 import { NoteAdd } from "../Notes-cmps/NoteAdd.jsx"
 import { NoteFilter } from "../Notes-cmps/dynamic-cmps/NoteFilter.jsx"
+import { NoteAudio } from "../Notes-cmps/dynamic-cmps/NoteAudio.jsx"
 
 import { noteService } from "../services/note.service.js"
 import { utilService } from "../../../services/util.service.js"
@@ -10,7 +11,7 @@ const { useState, useEffect } = React
 
 export function NoteIndex() {
   const [notes, setNotes] = useState(null)
-  const [filterBy, setFilterBy] = useState({txt: '', type: "all"})
+  const [filterBy, setFilterBy] = useState({ txt: "", type: "all" })
 
   // const notes = useNotes()
 
@@ -46,30 +47,32 @@ export function NoteIndex() {
     noteService.update(updatedNote).then(loadNotes)
   }
 
-  function onChangeColor(note, newColor){
+  function onChangeColor(note, newColor) {
     const updatedNote = {
       ...note,
-      style: {...note.style, backgroundColor: newColor}
+      style: { ...note.style, backgroundColor: newColor },
     }
     noteService.update(updatedNote).then(loadNotes)
   }
 
- function getFilteredNotes(notes, filterBy){
-  return notes.filter(note => {
-    const matchText = filterBy.txt === '' || 
-    (note.info.txt && note.info.txt.toLowerCase().includes(filterBy.txt.toLowerCase()))
+  function getFilteredNotes(notes, filterBy) {
+    return notes.filter((note) => {
+      const matchText =
+        filterBy.txt === "" ||
+        (note.info.txt &&
+          note.info.txt.toLowerCase().includes(filterBy.txt.toLowerCase()))
 
-    const matchType = 
-    filterBy.type === 'all' ||
-    note.type.toLowerCase().includes(filterBy.type.toLowerCase())
-    
-    return matchText && matchType
-  })
- } 
- 
- if (!notes) return <div>Loading notes...</div>
- const filteredNotes = getFilteredNotes(notes, filterBy)
- return (
+      const matchType =
+        filterBy.type === "all" ||
+        note.type.toLowerCase().includes(filterBy.type.toLowerCase())
+
+      return matchText && matchType
+    })
+  }
+
+  if (!notes) return <div>Loading notes...</div>
+  const filteredNotes = getFilteredNotes(notes, filterBy)
+  return (
     <section className="note-index">
       <NoteAdd onAddNote={onAddNote} />
       <NoteFilter onSetFilter={setFilterBy} />
@@ -80,6 +83,7 @@ export function NoteIndex() {
         onDuplicateNote={onDuplicateNote}
         onTogglePin={onTogglePin}
         onChangeColor={onChangeColor}
+        onAddNote={onAddNote}
       />
       <div>note app</div>
     </section>
