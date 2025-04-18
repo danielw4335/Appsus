@@ -1,0 +1,7 @@
+.mail-body{
+    display: flex;
+    height: 100%;
+    /* margin-bottom: 0; */
+    height: 75vh ;
+    background-color: aqua;
+}

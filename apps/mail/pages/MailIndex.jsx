@@ -38,34 +38,38 @@ export function MailIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterByToEdit }))
     }
 
+    function onSetIsComposing(filterByToEdit) {
+        setIsComposing(true)
+    }
+
 
 
 
     const loadingClass = isLoading ? 'loading' : ''
     return (
 
-        <section>
-            <button className="compose-btn" onClick={() => setIsComposing(true)}>
-                Compose
-            </button>
+        <section className="main-body-mail">
             {/* <MailDetails /> */}
             <MailFilter
                 onSetFilterBy={onSetFilterBy}
                 filterBy={filterBy}
+                onSetIsComposing={onSetIsComposing}
             />
-            <MailFolderList />
-            {/* <MailCompose /> */}
-            <MailList
-                mails={mails}
-                loadingClass={loadingClass}
-                onReload={loadMails}
-            />
+            <div className="mail-body">
+                <MailFolderList
+                    onSetFilterBy={onSetFilterBy}/>
+                    
+                <MailList
+                    mails={mails}
+                    loadingClass={loadingClass}
+                    onReload={loadMails} />
+            </div>
 
-{isComposing && (
-  <MailCompose
-  loadMails={loadMails}
-  onClose={() => setIsComposing(false)} />
-)}
+            {isComposing && (
+                <MailCompose
+                    loadMails={loadMails}
+                    onClose={() => setIsComposing(false)} />
+            )}
 
         </section>
     )
