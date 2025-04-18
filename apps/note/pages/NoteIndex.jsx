@@ -80,6 +80,7 @@ export function NoteIndex() {
         onDuplicateNote={onDuplicateNote}
         onTogglePin={onTogglePin}
         onChangeColor={onChangeColor}
+        onAddNote={onAddNote}
       />
       <div>note app</div>
     </section>

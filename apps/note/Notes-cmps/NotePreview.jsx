@@ -2,6 +2,7 @@ import { NoteTxt } from "./dynamic-cmps/NoteTxt.jsx"
 import { NoteImg } from "./dynamic-cmps/NoteImg.jsx"
 import { NoteTodos } from "./dynamic-cmps/NoteTodos.jsx"
 import { NoteVideo } from "./dynamic-cmps/NoteVideo.jsx"
+import { NoteCanvas } from "./dynamic-cmps/NoteCanvas.jsx"
 
 import { noteService } from "../services/note.service.js"
 import { NoteIndex } from "../pages/NoteIndex.jsx"
@@ -14,13 +15,16 @@ export function NotePreview({
   onDuplicateNote,
   onTogglePin,
   onChangeColor,
+  onAddNote,
 }) {
   const cmpMap = {
     NoteTxt: NoteTxt,
     NoteImg,
     NoteTodos,
     NoteVideo,
+    NoteCanvas,
   }
+
   const DynamicCmp = cmpMap[note.type]
   const [isPickerOpen, setIsPickerOpen] = useState(false)
   const navigate = useNavigate()
@@ -50,7 +54,15 @@ export function NotePreview({
       className="note-preview"
       style={{ backgroundColor: note.style.backgroundColor }}
     >
-      <DynamicCmp info={note.info} />
+      {/* <NoteCanvas info={note.info} onAddNote={onAddNote} /> */}
+      {/* <DynamicCmp info={note.info} /> */}
+
+      {note.type === "NoteCanvas" ? (
+        <NoteCanvas info={note.info} onAddNote={onAddNote} />
+      ) : (
+        <DynamicCmp info={note.info} />
+      )}
+
       {isPickerOpen && (
         <div className="color-picker">
           {["#fdd", "#fdfd96", "#caffbf", "#a0c4ff", "#d0bfff"].map((color) => (
@@ -66,7 +78,6 @@ export function NotePreview({
           ))}
         </div>
       )}
-
       <button onClick={() => onDeleteNote(note)}>
         <a className="fa-solid fa-trash"></a>
       </button>

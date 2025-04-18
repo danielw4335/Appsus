@@ -61,6 +61,13 @@ function _loadNotes() {
       style: { backgroundColor: "#e0f7fa" },
       isPinned: false,
     },
+    {
+      id: utilService.makeId(),
+      type: 'NoteCanvas',
+      info: {txt: 'Canvas!'},
+      style: { backgroundColor: "#e0f7fa" },
+      isPinned: false,
+    }
   ]
 }
 
