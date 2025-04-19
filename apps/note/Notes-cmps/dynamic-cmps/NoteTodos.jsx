@@ -1,22 +1,17 @@
 const { useState } = React
 
-export function NoteTodos({ info: { todos } }) {
-  const [currTodos, setCurrTodos] = useState(todos)
+export function NoteTodos({ info }) {
+  const [currTodos, setCurrTodos] = useState(info.todos)
 
   function onToggleTodo(idx) {
-    const updatedTodos = currTodos.map((todo, i) => {
-      if (i !== idx) return todo
-      if (i === idx)
-        return {
-          ...todo,
-          doneAt: todo.doneAt ? null : Date.now(),
-        }
-    })
-    setCurrTodos(updatedTodos)
+    const newTodos = [...currTodos]
+    newTodos[idx].doneAt = newTodos[idx].doneAt ? null : Date.now()
+    setCurrTodos(newTodos)
   }
 
   return (
     <section className="note-todo">
+      {info.txt && <p>{info.txt}</p>}
       {currTodos.map((todo, idx) => (
         <p key={idx} onClick={() => onToggleTodo(idx)} className={todo.doneAt ? 'done' : ''}>
           {todo.txt}

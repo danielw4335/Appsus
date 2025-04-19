@@ -42,8 +42,10 @@ export function NotePreview({
       body = `Image: ${note / info.title || ""} - ${note.info.url}`
     } else if (note.type === "NoteTodos") {
       body = note.info.todos.map((todo) => `• ${todo.txt}`).join("\n")
-    } else if (note.type === "NoteVide") {
+    } else if (note.type === "NoteVideo") {
       body = `Watch: ${note.info.url}`
+    } else if (note.type === "NoteCanvas") {
+      body = `<img src="${note.info.url}" alt="Canvas drawing">`
     }
 
     const subject = "Note from Keep"
@@ -52,6 +54,16 @@ export function NotePreview({
     )}&body=${encodeURIComponent(body)}`
     navigate(`/mail/compose${query}`)
   }
+
+  function onSelectNoteType(type) {
+    setNoteType(type)
+    setTxt('')
+    setUrl('')
+    setTodosTxt('')
+    setImgFile(null)
+    setAudioFile(null)
+  }
+  
 
   return (
     <section

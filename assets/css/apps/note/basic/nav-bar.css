@@ -1,0 +1,40 @@
+.note-index {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .side-nav {
+    width: 220px;
+    background-color: #fff;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .top-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .pinned-notes,
+  .other-notes {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+  
+  .pinned-notes h2,
+  .other-notes h2 {
+    grid-column: 1 / -1;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
