@@ -32,10 +32,8 @@ export function MailIndex() {
     function loadMails() {
         MailService.query(filterBy)
             .then(mails => {
+                resOfstatus() 
                 setMails(mails)
-                .then(() => {
-                    resOfstatus() 
-                })
             }).catch(err => console.error('Failed to load', err))
     }
 
@@ -46,6 +44,7 @@ export function MailIndex() {
             acc[status] = (acc[status] || 0) + 1
             return acc
         }, {})
+        // console.log(result)
         setMailCountByStatus(result)
     }
 

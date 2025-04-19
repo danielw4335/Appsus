@@ -38,7 +38,7 @@ export function MailFilter({ filterBy, onSetFilterBy, onSetIsComposing}) {
     return (
         <section className="mail-filter container">
 
-<a class="fa-solid fa-pencil compose-btn" onClick={() => onSetIsComposing(true)}></a>
+<a className="fa-solid fa-pencil compose-btn" onClick={() => onSetIsComposing(true)}></a>
 
             <form onSubmit={onSubmitFilter}>
                 <label htmlFor="txt"></label>
