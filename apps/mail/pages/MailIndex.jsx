@@ -44,7 +44,6 @@ export function MailIndex() {
             acc[status] = (acc[status] || 0) + 1
             return acc
         }, {})
-        // console.log(result)
         setMailCountByStatus(result)
     }
 
