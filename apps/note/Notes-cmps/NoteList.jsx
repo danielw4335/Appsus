@@ -1,9 +1,7 @@
 import { NotePreview } from "./NotePreview.jsx"
 
-export function NoteList({ notes, onDeleteNote, onDuplicateNote,onChangeColor, onTogglePin, onAddNote }) {
-  // const sortedNotes = [...notes].sort((a, b) => {
-  //   return (b.isPinned === true) - (a.isPinned === true)
-  // })
+
+export function NoteList({ notes, onDeleteNote, onDuplicateNote,onChangeColor, onTogglePin, onAddNote, onRestoreNote }) {
   const validNotes = notes.filter(note => note)
   const sortedNotes = validNotes.sort((a, b) => b.isPinned - a.isPinned)
   
@@ -19,6 +17,7 @@ export function NoteList({ notes, onDeleteNote, onDuplicateNote,onChangeColor, o
           onTogglePin={onTogglePin}
           onChangeColor={onChangeColor}
           onAddNote={onAddNote}
+          onRestoreNote={onRestoreNote}
         />
       ))}
     </section>

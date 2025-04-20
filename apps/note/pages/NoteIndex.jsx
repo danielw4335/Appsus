@@ -8,12 +8,12 @@ import { noteService } from "../services/note.service.js"
 import { utilService } from "../../../services/util.service.js"
 
 const { useState, useEffect } = React
+const { Link } = ReactRouterDOM
 
 export function NoteIndex() {
   const [notes, setNotes] = useState(null)
   const [filterBy, setFilterBy] = useState({ txt: "", type: "all" })
-
-  // const notes = useNotes()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
     loadNotes()
@@ -30,7 +30,8 @@ export function NoteIndex() {
   }
 
   function onDeleteNote(note) {
-    noteService.remove(note.id).then(loadNotes)
+    const trashedNote = { ...note, isTrashed: true }
+    noteService.update(trashedNote).then(loadNotes)
   }
 
   function onDuplicateNote(note) {
@@ -56,43 +57,64 @@ export function NoteIndex() {
   }
 
   function getFilteredNotes(notes, filterBy) {
-    return notes.filter((note) => {
-      const matchText =
-        filterBy.txt === "" ||
-        (note.info.txt &&
-          note.info.txt.toLowerCase().includes(filterBy.txt.toLowerCase()))
-
-      const matchType =
-        filterBy.type === "all" ||
-        note.type.toLowerCase().includes(filterBy.type.toLowerCase())
-
-      return matchText && matchType
-    })
+    return notes
+      .filter(note => !note.isTrashed) 
+      .filter(note => {
+        const txt = filterBy.txt.toLowerCase()
+  
+        const matchText =
+          !txt ||
+          (note.info.txt && note.info.txt.toLowerCase().includes(txt)) ||
+          (note.info.title && note.info.title.toLowerCase().includes(txt)) ||
+          (note.info.todos && note.info.todos.some(todo => todo.txt.toLowerCase().includes(txt)))
+  
+        const matchType = filterBy.type === "all" || note.type === filterBy.type
+  
+        return matchText && matchType
+      })
   }
+  
 
   if (!notes) return <div>Loading notes...</div>
   const filteredNotes = getFilteredNotes(notes, filterBy)
   return (
     <section className="note-index">
-      <aside className="side-nav">
+      <button
+        className="hamburger-btn"
+        onClick={() => setIsMenuOpen((prev) => !prev)}
+      >
+        ☰
+      </button>
+
+      <aside className={`side-nav ${isMenuOpen ? "open" : ""}`}>
         <ul>
-          <li>
+          <li className="li-nav-bar">
             <i className="fa-regular fa-lightbulb"></i> Notes
           </li>
-          <li>
+          <li className="li-nav-bar">
             <i className="fa-regular fa-bell"></i> Reminders
           </li>
-          <li>
+          <li className="li-nav-bar">
             <i className="fa-regular fa-pen-to-square"></i> Edit Labels
           </li>
-          <li>
+          <li className="li-nav-bar">
             <i className="fa-regular fa-box-archive"></i> Archive
           </li>
-          <li>
-            <i className="fa-regular fa-trash-can"></i> Trash
-          </li>
+          <Link to="/note/trash">
+            <li>
+              <i className="fa-regular fa-trash-can"></i> Trash
+            </li>
+          </Link>
         </ul>
       </aside>
+      
+      {isMenuOpen && (
+        <div
+          className="side-nav-overlay"
+          onClick={() => setIsMenuOpen(false)}
+        ></div>
+      )}
+
       <section className="main">
         <div className="top-bar">
           <NoteAdd onAddNote={onAddNote} />
@@ -102,8 +124,8 @@ export function NoteIndex() {
         {/* Main Content  */}
         <section className="main-content">
           {filteredNotes.some((note) => note.isPinned) && (
-          <section className="pinned-notes">
-              <h2>Pinned</h2>
+            <section className="pinned-notes">
+              <h2>Pinned notes:</h2>
               <NoteList
                 notes={filteredNotes.filter((note) => note.isPinned)}
                 onDeleteNote={onDeleteNote}
@@ -117,7 +139,7 @@ export function NoteIndex() {
 
           {/* other notes  */}
           <section className="other-notes">
-            <h2>Others</h2>
+            <h2>Notes:</h2>
             <NoteList
               notes={filteredNotes.filter((note) => !note.isPinned)}
               onDeleteNote={onDeleteNote}

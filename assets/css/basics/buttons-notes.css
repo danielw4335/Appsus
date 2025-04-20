@@ -1,6 +1,32 @@
-.bts-note {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
+.btns-note{
+  display: flex;
+  flex-direction: row;
+  place-content: center;
+  gap: 8px;
+  cursor: pointer;
 }
 
+.note-btn {
+  font-size: larger;
+  cursor: pointer;
+
+}
+
+.note-type-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.pin-btn.pinned {
+  background-color: gold;
+  color: black;
+
+}
+
+.pin-btn {
+  transition: 0.3s;
+  border-radius: 4px;
+}
