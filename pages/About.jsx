@@ -38,22 +38,7 @@ export function About() {
                             I'm passionate about technology, creative problem-solving, and eager to keep growing as a developer.
                         </p>
                         <a href="https://github.com/IdoFeffer" target="_blank" rel="noreferrer">
-                            <img src="/react-sprint3/assets/img/GitHub-Mark.png" alt="GitHub" className="github-icon" />
-                        </a>
-                    </div>
-                </div>
-                <div className="team-grid">
-                    <div className="team-card">
-                        <img src="./assets/img/IdoFefferImg.jpg" alt="Ido Feffer" className="team-img" />
-                        <h4>Ido Feffer</h4>
-                        <p>
-                            I'm Ido Feffer, a 26-year-old Fullstack Development student, currently studying at Coding Academy.
-                            I'm gaining hands-on experience with modern technologies like React, Node.js, MongoDB, and responsive design.
-                            The course is highly practical, project-driven, and focuses on building real-world applications from frontend to backend.
-                            I'm passionate about technology, creative problem-solving, and eager to keep growing as a developer.
-                        </p>
-                        <a href="https://github.com/IdoFeffer" target="_blank" rel="noreferrer">
-                            <img src="/react-sprint3/assets/img/GitHub-Mark.png" alt="GitHub" className="github-icon" />
+                            <img src="../assets/img/GitHub-Mark.png" alt="GitHub" className="github-icon" />
                         </a>
                     </div>
                 </div>
