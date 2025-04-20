@@ -11,7 +11,6 @@ export function NoteAdd({ onAddNote }) {
   const [videoFile, setVideoFile] = useState(null)
 
   function onAdd(ev) {
-
     ev.preventDefault()
     let note
     if (noteType === "NoteTxt") {
@@ -121,66 +120,92 @@ export function NoteAdd({ onAddNote }) {
 
   return (
     <section>
-      <form onSubmit={onAdd} >
-        <input
-          type="text"
-          value={txt}
-          onChange={(ev) => setTxt(ev.target.value)}
-          placeholder="Write something.."
-        />
-
-        {noteType === "NoteImg" && (
-          <input type="file" accept="image/*" onChange={handleImgUpload} />
-        )}
-
-        {noteType === "NoteVideo" && (
+      <div className="notes-header">
+        <form onSubmit={onAdd}>
           <input
             type="text"
-            placeholder="Paste YouTube URL"
-            value={url}
-            onChange={(ev) => setUrl(ev.target.value)}
+            value={txt}
+            onChange={(ev) => setTxt(ev.target.value)}
+            placeholder="Write something.."
           />
-        )}
 
-        {noteType === "NoteCanvas" && <p>Canvas note will be created</p>}
+          {noteType === "NoteImg" && (
+            <input type="file" accept="image/*" onChange={handleImgUpload} />
+          )}
 
-        {noteType === "NoteAudio" && (
-          <input type="file" accept="audio/*" onChange={handleAudioUpload} />
-        )}
+          {noteType === "NoteVideo" && (
+            <input
+              type="text"
+              placeholder="Paste YouTube URL"
+              value={url}
+              onChange={(ev) => setUrl(ev.target.value)}
+            />
+          )}
 
-        {noteType === "NoteTodos" && (
-          <input
-            type="text"
-            placeholder="Enter comma-separated tasks"
-            value={todosTxt}
-            onChange={(ev) => setTodosTxt(ev.target.value)}
-          />
-        )}
+          {noteType === "NoteCanvas" && <p>Canvas note will be created</p>}
 
-        <div className="note-type-btns">
-          <button type="button" onClick={() => setNoteType("NoteTxt")}  title="txt">
-            <i className="fa-solid fa-font"></i>
-          </button>
-          <button type="button" onClick={() => setNoteType("NoteImg")} title="Img">
-            <i className="fa-regular fa-image"></i>
-          </button>
-          <button type="button" onClick={() => setNoteType("NoteVideo")} title="Video">
-            <i className="fa-brands fa-youtube"></i>
-          </button>
-          <button type="button" onClick={() => setNoteType("NoteTodos")} title="Todo">
-            <i className="fa-solid fa-list"></i>
-          </button>
-          <button type="button" onClick={() => setNoteType("NoteAudio")} title="Audio">
-            <i className="fa-solid fa-volume-up"></i>
-          </button>
-          <button type="button" onClick={() => setNoteType("NoteCanvas")} title="Canvas"> 
-            <i className="fa-solid fa-paintbrush"></i>
-          </button>
-          <button type="submit" style={{display: 'none'}}>
-            <i className="fa-solid fa-paper-plane"></i>
-          </button>
-        </div>
-      </form>
+          {noteType === "NoteAudio" && (
+            <input type="file" accept="audio/*" onChange={handleAudioUpload} />
+          )}
+
+          {noteType === "NoteTodos" && (
+            <input
+              type="text"
+              placeholder="Enter comma-separated tasks"
+              value={todosTxt}
+              onChange={(ev) => setTodosTxt(ev.target.value)}
+            />
+          )}
+
+          <div className="note-type-btns">
+            <button
+              type="button"
+              onClick={() => setNoteType("NoteTxt")}
+              title="txt"
+            >
+              <i className="fa-solid fa-font"></i>
+            </button>
+            <button
+              type="button"
+              onClick={() => setNoteType("NoteImg")}
+              title="Img"
+            >
+              <i className="fa-regular fa-image"></i>
+            </button>
+            <button
+              type="button"
+              onClick={() => setNoteType("NoteVideo")}
+              title="Video"
+            >
+              <i className="fa-brands fa-youtube"></i>
+            </button>
+            <button
+              type="button"
+              onClick={() => setNoteType("NoteTodos")}
+              title="Todo"
+            >
+              <i className="fa-solid fa-list"></i>
+            </button>
+            <button
+              type="button"
+              onClick={() => setNoteType("NoteAudio")}
+              title="Audio"
+            >
+              <i className="fa-solid fa-volume-up"></i>
+            </button>
+            <button
+              type="button"
+              onClick={() => setNoteType("NoteCanvas")}
+              title="Canvas"
+            >
+              <i className="fa-solid fa-paintbrush"></i>
+            </button>
+            <button type="submit" style={{ display: "none" }}>
+              <i className="fa-solid fa-paper-plane"></i>
+            </button>
+          </div>
+        </form>
+      </div>
     </section>
   )
 }

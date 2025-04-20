@@ -6,10 +6,26 @@
   cursor: pointer;
 }
 
-.note-btn {
-  font-size: larger;
-  cursor: pointer;
+.main button {
+  border: none;
+  border-radius: 8px;
+  padding: 0.3em;
+  margin: 0 4px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.main button:hover {
+  background-color: #d6eaff;
+  transform: translateY(-2px);
+}
 
+.main button:active {
+  transform: scale(0.95);
+}
+
+.note-btn {
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .note-type-btns {
@@ -23,10 +39,11 @@
 .pin-btn.pinned {
   background-color: gold;
   color: black;
-
 }
 
 .pin-btn {
   transition: 0.3s;
   border-radius: 4px;
 }
+
+

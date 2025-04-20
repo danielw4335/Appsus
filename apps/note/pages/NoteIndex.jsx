@@ -88,22 +88,22 @@ export function NoteIndex() {
       <aside className={`side-nav ${isMenuOpen ? "open" : ""}`}>
         <ul>
           <li className="li-nav-bar">
-            <i className="fa-solid fa-inbox sidebar-icon"></i>
+            <i className="fa-solid fa-inbox sidebar-icon sidebar-icon"></i>
             <span className="label">Notes</span>
           </li>
 
           <li className="li-nav-bar">
-            <i className="fa-regular fa-bell"></i>
+            <i className="fa-regular fa-bell sidebar-icon"></i>
             <span className="label">Reminders</span>
           </li>
 
           <li className="li-nav-bar">
-            <i className="fa-regular fa-pen-to-square"></i>
+            <i className="fa-regular fa-pen-to-square sidebar-icon"></i>
             <span className="label">Edit Labels</span>
           </li>
 
           <li className="li-nav-bar">
-            <i className="fa-regular fa-box-archive"></i>
+            <i className="fa-regular fa-box-archive sidebar-icon"></i>
             <span className="label">Archive</span>
           </li>
 

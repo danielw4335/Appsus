@@ -8,9 +8,9 @@
   
   .top-bar {
     display: flex;
-    flex-wrap: wrap;
     gap: 1rem;
     align-items: flex-start;
+    justify-content: center;
   }
   
   .pinned-notes,

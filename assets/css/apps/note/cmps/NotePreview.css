@@ -4,6 +4,7 @@
   flex-direction: column;
   height: fit-content;
   /* max-width: 300px; */
+  font-family: monospace;
   padding: 1em;
   border-radius: 8px;
   background-color: #fff;
