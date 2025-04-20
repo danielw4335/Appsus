@@ -44,6 +44,8 @@
 
 .pinned-notes,
 .other-notes {
+  display: grid;
+  columns: 4;
   gap: 1rem;
 }
 
