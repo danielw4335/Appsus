@@ -1,8 +1,17 @@
+.main-body-mail{
+    display: flex;
+}
+
 .mail-body {
     display: flex;
+    flex-direction: column;
     height: calc(100vh - 120px);
     overflow: hidden;
     width: 100%;
+}
+
+.mail-filter {
+width: 100%;
 }
 
 .mail-list {

@@ -12,6 +12,11 @@
     box-sizing: border-box;
     cursor: pointer;
     position: relative;
+    border-bottom: 1px solid #eceff1;
+}
+
+.mail-preview:first-child {
+    border-top: 1px solid #eceff1;
 }
 
 .mail-preview.unread {

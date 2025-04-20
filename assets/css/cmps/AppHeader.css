@@ -5,11 +5,28 @@ header {
 .app-header {
     display: flex;
     justify-content: space-between;
-    padding: 20px 0;
+    align-items: center;
 }
 
 nav a {
     margin: .5em;
+    font-size: 1.15em;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-container img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.logo-container h3 {
+    margin: 0;
 }
 
 nav a:active {
@@ -17,7 +34,6 @@ nav a:active {
 }
 
 nav a.active {
-    color: darkblue;
+    color: rgb(76, 76, 119);
     font-weight: bold;
-    text-decoration: overline;
 }

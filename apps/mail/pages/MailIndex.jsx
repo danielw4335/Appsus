@@ -71,6 +71,12 @@ export function MailIndex() {
     const loadingClass = isLoading ? 'loading' : ''
     return (
         <section className="main-body-mail">
+                <MailFolderList
+                    mailCountByStatus={mailCountByStatus}
+                    onSetFilterBy={onSetFilterBy}
+                />
+            <div className="mail-body">
+                
             <MailFilter
                 onSetFilterBy={onSetFilterBy}
                 filterBy={filterBy}
@@ -79,11 +85,6 @@ export function MailIndex() {
                 onToggleSort={onToggleSort}
                 onSetIsComposing={onSetIsComposing}
             />
-            <div className="mail-body">
-                <MailFolderList
-                    mailCountByStatus={mailCountByStatus}
-                    onSetFilterBy={onSetFilterBy}
-                />
 
                 {!selectedMail && (
                     <MailList

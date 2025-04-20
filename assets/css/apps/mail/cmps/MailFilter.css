@@ -4,10 +4,9 @@
     background-color: #f1f3f4;
     border-bottom: 1px solid #ddd;
     gap: 1rem;
-    justify-content: flex-end;
     flex-direction: column;
     align-content: space-between;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 
@@ -24,6 +23,9 @@
 .sort-controls {
     display: flex;
     gap: 8px;
+    height: 2em;
+    width: 100%;
+    background-color: white;
 }
 
 .sort-btn {

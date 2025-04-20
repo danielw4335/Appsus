@@ -4,7 +4,9 @@ export function AppHeader() {
 
     return <header className="app-header">
         <Link to="/">
-            <h3>APPSUS</h3>
+            <div className="logo-container">
+                <img src="/react-sprint3/assets/img/LOGO.png" alt="Appsus Logo" />
+            </div>
         </Link>
         <nav>
             <NavLink to="/">Home</NavLink>
