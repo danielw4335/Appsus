@@ -37,9 +37,9 @@ export function MailFolderList({ onSetFilterBy, mailCountByStatus }) {
         <span>Inbox {(res && res.inbox) || ''}</span>
       </div>
 
-      <div className="sidebar-item" onClick={() => onClickFolder('sent')}>
+      <div className="sidebar-item" onClick={() => onSetFilterBy({ status: 'sent' })}>
         <i className="fa-regular fa-paper-plane sidebar-icon"></i>
-        <span>Sent {(res && res.sent) || ''}</span>
+        <span>Sent</span>
       </div>
 
       <div className="sidebar-item" onClick={() => onClickFolder('drafts')}>

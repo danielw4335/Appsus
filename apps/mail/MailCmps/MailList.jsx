@@ -3,17 +3,17 @@ import { MailService } from "../services/mail.service.js"
 
 const { useState, useEffect } = React
 
-export function MailList({ mails, loadingClass, onReload }) {
+export function MailList({ mails, loadingClass, onReload, onSelectMail }) {
 
-    function onMarkAsRead(mailId) {
+    function onMarkAsRead(mailId, ev) {
+        ev.stopPropagation()
         MailService.markAsRead(mailId).then(() => {
           onReload()
         }).catch(err => console.error('Failed to mark', err))
       }
-      
 
-    function onDeleteMail(mailId) {
-    
+    function onDeleteMail(mailId, ev) {
+        ev.stopPropagation()
         MailService.deleteMail(mailId).then(() => {
             onReload()
         }).catch(err => console.error('Failed to delete', err))
@@ -31,6 +31,7 @@ export function MailList({ mails, loadingClass, onReload }) {
                     className={loadingClass}
                     onMarkAsRead={onMarkAsRead}
                     onDeleteMail={onDeleteMail}
+                    onSelectMail={onSelectMail}
                 />
             ))}
         </ul>

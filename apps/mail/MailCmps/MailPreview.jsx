@@ -2,8 +2,7 @@ import { MailService } from "../services/mail.service"
 
 const { useState, useEffect } = React
 
-
-export function MailPreview({ mail, onMarkAsRead , onDeleteMail}) {
+export function MailPreview({ mail, onMarkAsRead, onDeleteMail, onSelectMail }) {
     const [info, setInfo] = useState(null)
 
     useEffect(() => {
@@ -16,8 +15,7 @@ export function MailPreview({ mail, onMarkAsRead , onDeleteMail}) {
     }
 
     function getInfo(infos) {
-
-        const { from, subject, body, sentAt } = infos
+        const { from, to, subject, body, sentAt, status } = infos
 
         let text = body
         const displayText = (typeof text === 'string')
@@ -28,7 +26,7 @@ export function MailPreview({ mail, onMarkAsRead , onDeleteMail}) {
 
         return {
             sub: subject,
-            name: from.substring(0, from.indexOf('@')),
+            name: status === 'sent' ? `To: ${to}` : from.substring(0, from.indexOf('@')),
             date: formatDate(sentAt),
             txt: displayText
         }
@@ -39,7 +37,6 @@ export function MailPreview({ mail, onMarkAsRead , onDeleteMail}) {
         const date = new Date(timestamp)
         const diffInMs = now - date
         const diffInHours = diffInMs / (1000 * 60 * 60)
-
 
         if (diffInHours < 24) {
             return date.toLocaleTimeString('en-US', {
@@ -68,30 +65,33 @@ export function MailPreview({ mail, onMarkAsRead , onDeleteMail}) {
     const { name, sub, txt, date } = info
 
     return (
-
         <div
             className={`mail-preview ${mail.isRead ? 'read' : 'unread'}`}
-            onClick={() => onMarkAsRead(mail.id)}
+            onClick={(event) => {
+                onMarkAsRead(mail.id, event)
+                onSelectMail(mail, event)
+            }}
         >
             <div className="box-font">
                 <a className="fa-regular fa-square"></a>
-                {/* <a className="fa-regular fa-star"></a> */}
+{/* <a className="fa-regular fa-star"></a> */}
                 {/* <a className="fa-regular fa-square-check"></a> */}
                 {/* <a className="fa-solid fa-star"></a> */}
                 {/* <a className="fa-regular fa-tag"></a> */}
                 {/* <a className="fa-solid fa-tag"></a> */}
             </div>
 
-            <p className="pre-from" >{name}</p>
-            <p className="pre-sub" >{sub}</p>
-            <p className="pre-body" >-{txt}</p>
-            <p className="pre-time" >{date}</p>
-            
+            <p className="pre-from">{name}</p>
+            <p className="pre-sub">{sub}</p>
+            <p className="pre-body">-{txt}</p>
+            <p className="pre-time">{date}</p>
+
             <div className="box-font-after">
-                <a className="fa-regular fa-trash-can"  onClick={() => onDeleteMail(mail.id)}></a>
+                <a
+                    className="fa-regular fa-trash-can"
+                    onClick={(event) => onDeleteMail(mail.id, event)}
+                ></a>
             </div>
-
         </div>
-
     )
 }

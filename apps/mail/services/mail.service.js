@@ -1,5 +1,6 @@
 import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
+import { demoMails } from './mails-demo-data.service.js'
 
 const mail_KEY = 'mailDB'
 _createMails()
@@ -13,7 +14,6 @@ export const MailService = {
     save,
     addMail,
     getMails,
-    // remove
 }
 
 const loggedinUser = {
@@ -21,88 +21,72 @@ const loggedinUser = {
     fullname: 'Mahatma Appsus'
 }
 
-const mail = {
-    id: 'e101',
-    createdAt: 1551133930500,
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
-    isRead: false,
-    sentAt: 1551133930594,
-    removedAt: null,
-    from: 'momo@momo.com',
-    to: 'user@appsus.com'
-}
-
-function addMail(data){
-console.log(data)
-const mail = {
-    // id: utilService.makeId(),
-    createdAt: Date.now(),
-    subject: data.Subject,
-    body: data.body,
-    isRead: false,
-    sentAt: Date.now(),
-    removedAt: null,
-    from: loggedinUser.email,
-    to: data.mail,
-    status: 'sent',
-    isStared: false,
-    lables: []
-}
-save(mail)
+function addMail(data) {
+    const mail = {
+        createdAt: Date.now(),
+        subject: data.Subject,
+        body: data.body,
+        isRead: true,
+        sentAt: Date.now(),
+        removedAt: null,
+        from: loggedinUser.email,
+        to: data.mail,
+        status: 'sent',
+        isStared: false,
+        lables: []
+    }
+    save(mail)
 }
 
 function _createMails(count = 5) {
-    let mails = utilService.loadFromStorage(mail_KEY) || []
+    const mails = utilService.loadFromStorage(mail_KEY)
 
-    if (!mails || !mails.length) {
-        for (let i = 0; i < count; i++) {
-            const mail = {
-                id: utilService.makeId(),
-                createdAt: Date.now(),
-                subject: `${utilService.makeLorem(5)} Mail Subject ${i + 1}`,
-                body: utilService.makeLorem(20),
-                isRead: false,
-                sentAt: Date.now() + i * 1000,
-                removedAt: null,
-                from: `sender${i + 1}@mail.com`,
-                to: `user@appsus.com`,
-                status: 'inbox',
-                isStared: Math.random() > 0.5,
-                lables: []
+    if (mails && mails.length) return
+
+    Promise.resolve(demoMails).then(mails => {
+        if (!mails || !mails.length) {
+            mails = []
+            for (let i = 0; i < count; i++) {
+                mails.push({
+                    id: utilService.makeId(),
+                    createdAt: Date.now(),
+                    subject: `${utilService.makeLorem(5)} Mail Subject ${i + 1}`,
+                    body: utilService.makeLorem(20),
+                    isRead: false,
+                    sentAt: Date.now() + i * 1000,
+                    removedAt: null,
+                    from: `sender${i + 1}@mail.com`,
+                    to: `user@appsus.com`,
+                    status: 'inbox',
+                    isStared: Math.random() > 0.5,
+                    lables: []
+                })
             }
-            mails.push(mail)
         }
-    }
-    utilService.saveToStorage(mail_KEY, mails)
+
+        utilService.saveToStorage(mail_KEY, mails)
+    }).catch(err => {
+        console.error(' Failed to create mails:', err)
+    })
 }
 
-function getMails(){
+function getMails() {
     return utilService.loadFromStorage(mail_KEY) || []
 }
 
 function query(filterBy = {}) {
-    return storageService.query(mail_KEY)
-        .then
-        (mails => {
-            if (filterBy.txt) {
-                const regExp = new RegExp(filterBy.txt, 'i')
-                mails = mails.filter(mail => regExp.test(mail.subject || mail.body || mail.from || mail.to))
-            }
-            if (filterBy.status) {
-                mails = mails.filter(mail => filterBy.status === mail.status)
-            }
-
-            // if (filterBy.pageCount) {
-            //     mails = mails.filter(mail => mail.pageCount >= filterBy.pageCount)
-            // }
-
-            // if (filterBy.minPublicationYear) {
-            //     mails = mails.filter(mail => mail.publishedDate >= filterBy.minPublicationYear)
-            // }
-            console.log('return from query', mails)
-            return mails
-        })
+    return storageService.query(mail_KEY).then(mails => {
+        if (filterBy.txt) {
+            const regExp = new RegExp(filterBy.txt, 'i')
+            mails = mails.filter(mail =>
+                regExp.test(mail.subject || mail.body || mail.from || mail.to)
+            )
+        }
+        if (filterBy.status) {
+            mails = mails.filter(mail => filterBy.status === mail.status)
+        }
+        return mails
+    })
 }
 
 function getFilterFromSearchParams(searchParams) {
@@ -111,13 +95,7 @@ function getFilterFromSearchParams(searchParams) {
     const isRead = searchParams.get('isRead') || ''
     const isStared = searchParams.get('isStared') || ''
     const lables = searchParams.get('lables') || ''
-    return {
-        status,
-        txt,
-        isRead,
-        isStared,
-        lables
-    }
+    return { status, txt, isRead, isStared, lables }
 }
 
 function markAsRead(mailId) {
@@ -136,21 +114,12 @@ function deleteMail(mailId) {
 
 function get(mailId) {
     return storageService.get(mail_KEY, mailId)
-    // .then(_setNextPrevBookId)
 }
 
-// function remove(bookId) {
-//     // return Promise.reject('Oh No!')
-//     return storageService.remove(book_KEY, bookId)
-// }
-
 function save(mail) {
-    console.log('hi save')
     if (mail.id) {
         return storageService.put(mail_KEY, mail)
     } else {
         return storageService.post(mail_KEY, mail)
     }
 }
-
-  
