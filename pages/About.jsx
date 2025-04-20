@@ -14,7 +14,7 @@ export function About() {
                 <h2>Meet the Developer</h2>
                 <div className="team-grid">
                     <div className="team-card">
-                        <img src="/react-sprint3/assets/img/img-daniel.jpg" alt="Daniel wallache" className="team-img" />
+                        <img src="assets/img/img-daniel.jpg" alt="Daniel wallache" className="team-img" />
                         <h4>Daniel wallache</h4>
                         <p>
                             I'm Daniel wallache, a 24-year-old Fullstack Development student from the Lachish region, currently studying at Coding Academy.
