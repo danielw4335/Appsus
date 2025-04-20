@@ -53,7 +53,7 @@ export function About() {
                             I'm passionate about technology, creative problem-solving, and eager to keep growing as a developer.
                         </p>
                         <a href="https://github.com/IdoFeffer" target="_blank" rel="noreferrer">
-                            <img src="/react-sprint3/assets/img/GitHub-Mark.png" alt="GitHub" className="github-icon" />
+                            <img src="./assets/img/GitHub-Mark.png" alt="GitHub" className="github-icon" />
                         </a>
                     </div>
                 </div>

@@ -8,13 +8,13 @@ export function Home() {
 
             <section className="app-grid">
                 <div className="app-card">
-                    <img src="/react-sprint3/assets/img/Gmail.png" alt="Mail App" />
+                    <img src="./assets/img/Gmail.png" alt="Mail App" />
                     <h3>Appsus Mail</h3>
                     <Link to="/mail" className="try-btn">Open</Link>
                 </div>
 
                 <div className="app-card">
-                    <img src="/react-sprint3/assets/img/Keep.png" alt="Keep App" />
+                    <img src="./assets/img/Keep.png" alt="Keep App" />
                     <h3>Appsus Keep</h3>
                     <Link to="/note" className="try-btn">Open</Link>
                 </div>
