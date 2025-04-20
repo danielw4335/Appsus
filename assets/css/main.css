@@ -17,7 +17,7 @@
 @import './apps/note/basic/note-header.css';
 
 /* Pages */
-@import './pages/Home.css';
+@import './pages/home.css';
 @import './pages/About.css';
 
 /* Pages note */
