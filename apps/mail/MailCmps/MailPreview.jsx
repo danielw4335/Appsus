@@ -1,9 +1,8 @@
-import { MailService } from "../services/mail.service.js"
-
+import { MailService } from "../services/mail.service"
 
 const { useState, useEffect } = React
 
-export function MailPreview({ mail, onMarkAsRead, onDeleteMail, onSelectMail, onToggleStar }) {
+export function MailPreview({ mail, onMarkAsRead, onDeleteMail, onSelectMail, onToggleStar, onToggleRead }) {
     const [info, setInfo] = useState(null)
 
     useEffect(() => {
@@ -59,12 +58,6 @@ export function MailPreview({ mail, onMarkAsRead, onDeleteMail, onSelectMail, on
         })
     }
 
-    function onToggleStar(ev) {
-        ev.stopPropagation()
-        MailService.toggleStar(mail.id).then(() => onReload())
-      }
-      
-
     if (!info) return <div>Loading...</div>
 
     const { senderName, sub, txt, date } = info
@@ -86,7 +79,7 @@ export function MailPreview({ mail, onMarkAsRead, onDeleteMail, onSelectMail, on
                     className={`fa-star ${mail.isStarred ? 'fa-solid star-icon starred' : 'fa-regular star-icon'}`}
                     onClick={(ev) => {
                         ev.stopPropagation()
-                        if (typeof onToggleStar === 'function') onToggleStar(mail.id)
+                        onToggleStar(mail.id)
                     }}
                 ></a>
             </div>
@@ -105,17 +98,11 @@ export function MailPreview({ mail, onMarkAsRead, onDeleteMail, onSelectMail, on
             <div className="box-font-after">
                 <a
                     className={`fa-regular ${mail.isRead ? 'fa-envelope-open' : 'fa-envelope'}`}
-                    onClick={(ev) => {
-                        ev.stopPropagation()
-                        onMarkAsRead(mail.id, ev)
-                    }}
+                    onClick={(ev) => onToggleRead(mail.id, ev)}
                 ></a>
                 <a
                     className="fa-regular fa-trash-can"
-                    onClick={(ev) => {
-                        ev.stopPropagation()
-                        onDeleteMail(mail.id, ev)
-                    }}
+                    onClick={(ev) => onDeleteMail(mail.id, ev)}
                 ></a>
             </div>
         </li>

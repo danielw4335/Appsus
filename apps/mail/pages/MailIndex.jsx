@@ -20,13 +20,16 @@ export function MailIndex() {
     const [isComposing, setIsComposing] = useState(false)
     const [selectedMail, setSelectedMail] = useState(null)
 
+    const [sortField, setSortField] = useState('date')
+    const [sortOrder, setSortOrder] = useState('asc')
+
     useEffect(() => {
         setSearchParams(utilService.getTruthyValues(filterBy))
         loadMails()
-    }, [filterBy])
+    }, [filterBy, sortField, sortOrder])
 
     function loadMails() {
-        MailService.query(filterBy)
+        MailService.query(filterBy, sortField, sortOrder)
             .then(mails => {
                 resOfstatus()
                 setMails(mails)
@@ -43,12 +46,10 @@ export function MailIndex() {
         setMailCountByStatus(result)
     }
 
-      
     function onSelectMail(mail, ev) {
         ev.stopPropagation()
         setSelectedMail(mail)
     }
-
 
     function onSetFilterBy(filterByToEdit) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterByToEdit }))
@@ -58,17 +59,28 @@ export function MailIndex() {
         setIsComposing(true)
     }
 
+    function onToggleSort(field) {
+        if (sortField === field) {
+            setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')
+        } else {
+            setSortField(field)
+            setSortOrder('asc')
+        }
+    }
+
     const loadingClass = isLoading ? 'loading' : ''
     return (
         <section className="main-body-mail">
             <MailFilter
                 onSetFilterBy={onSetFilterBy}
                 filterBy={filterBy}
-              
+                sortField={sortField}
+                sortOrder={sortOrder}
+                onToggleSort={onToggleSort}
+                onSetIsComposing={onSetIsComposing}
             />
             <div className="mail-body">
                 <MailFolderList
-                  onSetIsComposing={onSetIsComposing}
                     mailCountByStatus={mailCountByStatus}
                     onSetFilterBy={onSetFilterBy}
                 />

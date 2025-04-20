@@ -1,7 +1,8 @@
+// MailFilter.jsx
 const { useState, useEffect } = React
 const { Link } = ReactRouterDOM
 
-export function MailFilter({ filterBy, onSetFilterBy }) {
+export function MailFilter({ filterBy, onSetFilterBy, sortField, sortOrder, onToggleSort }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
 
     useEffect(() => {
@@ -19,7 +20,6 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
             case 'range':
                 value = +value
                 break;
-
             case 'checkbox':
                 value = target.checked
                 break
@@ -28,49 +28,51 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
 
-    function onSetFilterBy(filterByToEdit) {
-        setFilterBy(prevFilter => ({ ...prevFilter, ...filterByToEdit }));
-    }
-
     function onSubmitFilter(ev) {
         ev.preventDefault()
         onSetFilterBy(filterByToEdit)
     }
 
-    const { status, txt, isRead, isStared, lables } = filterByToEdit
+    const { txt } = filterByToEdit
 
     return (
         <section className="mail-filter container">
-        
+       <form onSubmit={onSubmitFilter}>
+  <div className="search-bar">
+    <i className="fa-solid fa-magnifying-glass"></i>
+    <input
+      onChange={handleChange}
+      value={txt}
+      name="txt"
+      id="txt"
+      type="text"
+      placeholder="Search mail"
+    />
+  </div>
+</form>
 
-            <form onSubmit={onSubmitFilter}>
-                <label htmlFor="txt"></label>
-                <input onChange={handleChange} value={txt} name="txt" id="txt" type="text"
-                    placeholder="Search mail" />
+            <div className="sort-controls">
+                <button
+                    className={`sort-btn ${sortField === 'date' ? 'active' : ''}`}
+                    onClick={() => onToggleSort('date')}
+                >
+                    Date <i className={`fa-solid fa-chevron-${sortOrder === 'asc' ? 'up' : 'down'}`}></i>
+                </button>
 
-                {/* <label htmlFor="minPrice">Min Price</label>
-                <input onChange={handleChange} value={minPrice || ''} name="minPrice" id="minPrice" type="number" />
+                <button
+                    className={`sort-btn ${sortField === 'subject' ? 'active' : ''}`}
+                    onClick={() => onToggleSort('subject')}
+                >
+                    Subject <i className={`fa-solid fa-chevron-${sortOrder === 'asc' ? 'up' : 'down'}`}></i>
+                </button>
 
-                <label htmlFor="pageCount">Min Pages Count: {filterByToEdit.pageCount || 0}</label>
-                <input onChange={handleChange} type="range" name="pageCount" id="pageCount" min="0" max="1000" step="10" value={filterByToEdit.pageCount || 0} />
-
-                <label htmlFor="minPublicationYear">Published year</label>
-                <input onChange={handleChange} type="number" name="minPublicationYear" id="minPublicationYear" min="1900" max={new Date().getFullYear()} value={filterByToEdit.minPublicationYear || 1900} />
-                <Link to={'/books/add'}>Add books</Link> */}
-                {/* <button className="fil-btn">Submit</button> */}
-
-                {/* <label htmlFor="minPrice">Min Price</label>
-                <input onChange={handleChange} value={minPrice || ''} name="minPrice" id="minPrice" type="number" />
-
-                <label htmlFor="pageCount">Min Pages Count: {filterByToEdit.pageCount || 0}</label>
-                <input onChange={handleChange} type="range" name="pageCount" id="pageCount" min="0" max="1000" step="10" value={filterByToEdit.pageCount || 0} />
-
-                <label htmlFor="minPublicationYear">Published year</label>
-                <input onChange={handleChange} type="number" name="minPublicationYear" id="minPublicationYear" min="1900" max={new Date().getFullYear()} value={filterByToEdit.minPublicationYear || 1900} />
-                <Link to={'/books/add'}>Add books</Link> */}
-                {/* <button className="fil-btn">Submit</button> */}
-            </form>
+                <button
+                    className={`sort-btn ${sortField === 'isRead' ? 'active' : ''}`}
+                    onClick={() => onToggleSort('isRead')}
+                >
+                    Read <i className={`fa-solid fa-chevron-${sortOrder === 'asc' ? 'up' : 'down'}`}></i>
+                </button>
+            </div>
         </section>
     )
 }
-

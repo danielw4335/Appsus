@@ -1,7 +1,7 @@
 .note-index {
   display: flex;
   min-height: 100vh;
-  padding-left: 60px; /* משאיר מקום ל-side-nav הצר */
+  padding-left: 60px; 
   transition: padding-left 0.3s;
 }
 
