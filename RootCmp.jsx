@@ -8,7 +8,9 @@ import { MailIndex } from "./apps/mail/pages/MailIndex.jsx"
 import { NoteIndex } from "./apps/note/pages/NoteIndex.jsx"
 
 import { NoteTrash } from "./apps/note/Notes-cmps/dynamic-cmps/NoteTrash.jsx"
-
+import { NoteArchive } from "./apps/note/pages/NoteArchive.jsx"
+import { NoteRemainder } from "./apps/note/pages/NoteRemainder.jsx"
+import { NoteEditLabel } from "./apps/note/pages/NoteEditLabel.jsx"
 
 export function App() {
     return <Router>
@@ -21,6 +23,9 @@ export function App() {
                 <Route path="/note" element={<NoteIndex />} />
                 
                 <Route path="/note/trash" element={<NoteTrash />} />
+                <Route path="/note/archive" element={<NoteArchive />} />
+                <Route path="/note/remainder" element={<NoteRemainder />} />
+                <Route path="/note/edit-labels" element={<NoteEditLabel />} />
             </Routes>
         </section>
     </Router>

@@ -6,7 +6,7 @@ export function NoteMap({ info }) {
   return (
     <section className="note-map">
       <iframe src={loc}></iframe>
-      {txt && <p>{txt}</p>}
+      {(info.txt || info.title) && <p>{info.txt || info.title}</p>}
     </section>
   )
 }

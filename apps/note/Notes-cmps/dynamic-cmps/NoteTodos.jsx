@@ -11,10 +11,11 @@ export function NoteTodos({ info }) {
 
   return (
     <section className="note-todo">
-      {info.txt && <p>{info.txt}</p>}
+      {(info.txt || info.title) && <h2>{info.txt || info.title}</h2>}
       {currTodos.map((todo, idx) => (
         <p key={idx} onClick={() => onToggleTodo(idx)} className={todo.doneAt ? 'done' : ''}>
           {todo.txt}
+
         </p>
       ))}
     </section>

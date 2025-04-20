@@ -83,7 +83,7 @@ export function NoteCanvas({ info, onAddNote }) {
     <section className="note-canvas">
       <canvas ref={canvasRef}></canvas>
       <button onClick={onSaveCanvas}>Save Canvas</button>
-      {info.txt && <p>{info.txt}</p>}
+      {(info.txt || info.title) && <p>{info.txt || info.title}</p>}
     </section>
   )
 }

@@ -31,6 +31,22 @@ function _loadNotes() {
     },
     {
       id: utilService.makeId(),
+      type: "NoteTxt",
+      info: { txt: "Do homework!" },
+      style: { backgroundColor: "#fff9c4" },
+      isPinned: false,
+      isTrashed: false,
+    },
+    {
+      id: utilService.makeId(),
+      type: "NoteTxt",
+      info: { txt: "Keep smile! 😊" },
+      style: { backgroundColor: "#e8eaf6" },
+      isPinned: true,
+      isTrashed: false,
+    },
+    {
+      id: utilService.makeId(),
       type: "NoteImg",
       info: {
         url: "assets/img/FatherSonKamehameha.jpg",
@@ -55,19 +71,36 @@ function _loadNotes() {
       id: utilService.makeId(),
       type: "NoteTodos",
       info: {
+        title: 'Todos:',
         todos: [
+          { txt: "Watch One Piece eposide 1126", doneAt: 1680000000000 },
           { txt: "Buy milk", doneAt: null },
-          { txt: "Watch One Piece", doneAt: 1680000000000 },
         ],
       },
       style: { backgroundColor: "#e0f7fa" },
+      isPinned: true,
+      isTrashed: false,
+    },
+    {
+      id: utilService.makeId(),
+      type: "NoteTodos",
+      info: {
+        todos: [
+          { txt: "Finish the report", doneAt: 1680500000000 },
+          { txt: "Finish the presentation", doneAt: 1745154259304 },
+        ],
+      },
+      style: { backgroundColor: "#dcedc8" },
       isPinned: false,
       isTrashed: false,
     },
     {
       id: utilService.makeId(),
       type: "NoteCanvas",
-      info: { txt: "Canvas" },
+      info:  {
+        title: 'Hello',
+        txt: "Canvas",
+      },
       style: { backgroundColor: "#e0f7fa" },
       isPinned: false,
       isTrashed: false,
@@ -85,14 +118,27 @@ function _loadNotes() {
     },
     {
       id: utilService.makeId(),
-      type: 'NoteMap',
+      type: "NoteMap",
       info: {
+        title: "Tel-Aviv",
         lng: 34.7818,
-        lat: 32.0853
+        lat: 32.0853,
       },
       style: { backgroundColor: "#e0f7fa" },
       isPinned: false,
       isTrashed: false,
+    },
+    {
+      id: utilService.makeId(),
+      type: "NoteMap",
+      info: {
+        lng: 35.2137,
+        lat: 31.7683,
+      },
+      style: { backgroundColor: "#e1bee7" },
+      isPinned: false,
+      isTrashed: false,
+      title: "Jerusalem",
     },
   ]
 }
