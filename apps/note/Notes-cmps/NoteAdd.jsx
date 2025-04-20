@@ -142,7 +142,7 @@ export function NoteAdd({ onAddNote }) {
             />
           )}
 
-          {noteType === "NoteCanvas" && <p>Canvas note will be created</p>}
+          {noteType === "NoteCanvas" }
 
           {noteType === "NoteAudio" && (
             <input type="file" accept="audio/*" onChange={handleAudioUpload} />

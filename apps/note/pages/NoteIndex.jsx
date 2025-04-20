@@ -83,28 +83,39 @@ export function NoteIndex() {
     <section className="note-index">
       <button
         className="hamburger-btn"
-        onClick={() => setIsMenuOpen((prev) => !prev)}>☰</button>
+        onClick={() => setIsMenuOpen((prev) => !prev)}
+      >
+        ☰
+      </button>
 
-      <aside className={`side-nav ${isMenuOpen ? "open" : ""}`}>
+      <aside className={`side-nav ${isMenuOpen ? "open" : ""}`} >
         <ul>
           <li className="li-nav-bar">
-            <i className="fa-solid fa-inbox sidebar-icon sidebar-icon"></i>
-            <span className="label">Notes</span>
+            <Link to="/note/note">
+              <i className="fa-solid fa-inbox sidebar-icon sidebar-icon"></i>
+              <span className="label">Notes</span>
+            </Link>
           </li>
 
           <li className="li-nav-bar">
-            <i className="fa-regular fa-bell sidebar-icon"></i>
-            <span className="label">Reminders</span>
+            <Link to="/note/remainder">
+              <i className="fa-regular fa-bell sidebar-icon"></i>
+              <span className="label">Reminders</span>
+            </Link>
           </li>
 
           <li className="li-nav-bar">
-            <i className="fa-regular fa-pen-to-square sidebar-icon"></i>
-            <span className="label">Edit Labels</span>
+            <Link to="/note/edit-labels">
+              <i className="fa-regular fa-pen-to-square sidebar-icon"></i>
+              <span className="label">Edit Labels</span>
+            </Link>
           </li>
 
           <li className="li-nav-bar">
-            <i className="fa-regular fa-box-archive sidebar-icon"></i>
-            <span className="label">Archive</span>
+            <Link to="/note/archive">
+              <i className="fa-regular fa-box-archive sidebar-icon"></i>
+              <span className="label">Archive</span>
+            </Link>
           </li>
 
           <li className="li-nav-bar">
@@ -122,7 +133,6 @@ export function NoteIndex() {
           onClick={() => setIsMenuOpen(false)}
         ></div>
       )}
-
       <section className="main">
         <div className="top-bar">
           <NoteAdd onAddNote={onAddNote} />

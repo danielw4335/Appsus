@@ -1,5 +1,5 @@
-import { noteService } from "../services/note.service.js"
-import { NoteList } from "../Notes-cmps/NoteList.jsx"
+import { noteService } from "../../services/note.service.js"
+import { NoteList } from "../NoteList.jsx"
 
 const { useEffect, useState } = React
 
