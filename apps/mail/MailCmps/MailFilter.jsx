@@ -6,7 +6,9 @@ export function MailFilter({ filterBy, onSetFilterBy, onSetIsComposing}) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
     
     useEffect(() => {
-        onSetFilterBy(filterByToEdit)   
+        if (JSON.stringify(filterByToEdit) !== JSON.stringify(filterBy)) {
+            onSetFilterBy(filterByToEdit);
+        }
     }, [filterByToEdit])
 
     function handleChange({ target }) {
@@ -27,6 +29,10 @@ export function MailFilter({ filterBy, onSetFilterBy, onSetIsComposing}) {
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
 
+    function onSetFilterBy(filterByToEdit) {
+        setFilterBy(prevFilter => ({ ...prevFilter, ...filterByToEdit }));
+    }
+
     function onSubmitFilter(ev) {
         ev.preventDefault()
         onSetFilterBy(filterByToEdit)
@@ -38,12 +44,13 @@ export function MailFilter({ filterBy, onSetFilterBy, onSetIsComposing}) {
     return (
         <section className="mail-filter container">
 
-<a class="fa-solid fa-pencil compose-btn" onClick={() => onSetIsComposing(true)}></a>
+<a className="fa-solid fa-pencil compose-btn" onClick={() => onSetIsComposing(true)}></a>
 
             <form onSubmit={onSubmitFilter}>
                 <label htmlFor="txt"></label>
                 <input onChange={handleChange} value={txt} name="txt" id="txt" type="text"
                     placeholder="Search mail" />
+                    
                 {/* <label htmlFor="minPrice">Min Price</label>
                 <input onChange={handleChange} value={minPrice || ''} name="minPrice" id="minPrice" type="number" />
 
