@@ -1,0 +1,33 @@
+.book-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1em;
+}
+
+.book-list li {
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 5px;
+    background-color: var(--clr1bg);
+    border-radius: 8px;
+}
+
+.book-list li.loading {
+    opacity: 0.7;
+}
+
+.btn-feature{
+    display: flex;
+    flex-wrap: wrap;
+   padding: auto;
+}
+
+.btn-feature button{
+    margin: .2em;
+    width: 45%;
+    text-align: center;
+}

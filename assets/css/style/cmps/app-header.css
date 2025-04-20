@@ -1,0 +1,26 @@
+.app-header {
+    background-color: var(--clr1);
+    color: var(--clr1bg-light);
+    padding-block: .75em;
+
+}
+
+.app-header section:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.app-header .app-nav {
+
+    display: flex;
+    gap: 15px;
+
+    >a {
+        cursor: pointer;
+    }
+}
+
+.active {
+    color: yellow;
+}

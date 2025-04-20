@@ -1,4 +1,5 @@
 import './assets/css/main.css'
+import './'
 
 import { App } from './RootCmp.jsx'
 const elContainer = document.getElementById('root')

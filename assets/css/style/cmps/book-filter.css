@@ -1,0 +1,22 @@
+.book-filter {
+    background-color: var(--clr2bg);
+    padding-block: 1em;
+border: 1px solid;
+}
+
+.book-filter > h2 {
+    margin-top: 0;
+}
+
+.book-filter form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: .5em;
+    font-size: 0.8em;
+}
+
+.book-filter form button {
+    width: 6em;
+    margin-inline: 0
+    
+}
