@@ -3,36 +3,35 @@
 }
 
 @media (max-width: 640px) {
-    .note-index {
-      flex-direction: row; /* שמירה על המבנה: sidebar + content */
-    }
-  
-    .side-nav {
-      flex-shrink: 0;
-      width: 80px;
-      font-size: 0.75rem;
-    }
-  
-    .main-content {
-      flex: 1;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-  
-    .top-bar {
-      flex-direction: column;
-      align-items: stretch;
-    }
-  
-    .pinned-notes,
-    .other-notes {
-      grid-template-columns: 1fr; /* טור אחד */
-    }
-
+  .note-index {
+    flex-direction: row;
   }
-  
+
+  .side-nav {
+    flex-shrink: 0;
+    width: 80px;
+    font-size: 0.75rem;
+  }
+
+  .main-content {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .top-bar {
+    position: sticky;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pinned-notes,
+  .other-notes {
+    grid-template-columns: 1fr;
+  }
+
   .note-index {
     flex-direction: row;
     max-width: 100%;
@@ -45,7 +44,7 @@
   }
 
   .note-preview {
-    max-width: 80%;
+    max-width: 55%;
     font-size: 0.8rem;
     padding: 0.5rem;
   }
@@ -69,20 +68,20 @@
 
   .side-nav {
     position: fixed;
-    top: 60px; 
+    top: 60px;
     left: 0;
-    width: 60px; 
+    width: 60px;
     background-color: white;
     box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: width 0.3s ease;
     z-index: 1001;
   }
-  
+
   .side-nav:hover {
-    width: 220px; 
+    width: 220px;
   }
-  
+
   .li-nav-bar {
     padding: 20px;
     border-bottom: 1px solid black;
@@ -91,15 +90,13 @@
     gap: 12px;
     cursor: pointer;
   }
-  
+
   .li-nav-bar .label {
     opacity: 0;
     transition: opacity 0.3s ease;
   }
-  
+
   .side-nav:hover .label {
     opacity: 1;
   }
-  
-  
 }
