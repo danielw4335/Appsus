@@ -23,9 +23,9 @@ export function MailDetails({ mail, onClose }) {
         const diff = now - date
         const daysAgo = Math.floor(diff / (1000 * 60 * 60 * 24))
         
-        const final = `${formatted} ${daysAgo ? `(${daysAgo} day${daysAgo !== 1 ? 's' : ''} ago)` : ''}`
+        const time = `${formatted} ${daysAgo ? `(${daysAgo} day${daysAgo !== 1 ? 's' : ''} ago)` : ''}`
 
-        return final
+        return time
     }
 
     return (
@@ -38,7 +38,10 @@ export function MailDetails({ mail, onClose }) {
             </header>
             <div className="mail-content">
                 <h3>{mail.subject}</h3>
-                <p className="from">{mail.from}</p>
+                <div className="sender-details">
+                    <p className="sender-name">{mail.senderName || mail.from.split('@')[0]}</p>
+                    <p className="sender-email">{`<${mail.from}>`}</p>
+                </div>
                 <p className="date">{timeToDate()}</p>
                 <p className="body">{mail.body}</p>
             </div>

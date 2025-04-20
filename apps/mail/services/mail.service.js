@@ -30,6 +30,7 @@ function addMail(data) {
         sentAt: Date.now(),
         removedAt: null,
         from: loggedinUser.email,
+        senderName: loggedinUser.fullname,
         to: data.mail,
         status: 'sent',
         isStared: false,
@@ -45,6 +46,7 @@ function _createMails(count = 5) {
 
     Promise.resolve(demoMails).then(mails => {
         if (!mails || !mails.length) {
+            const senderNames = ['John Smith', 'Sarah Johnson', 'David Brown', 'Emma Wilson', 'Michael Davis']
             mails = []
             for (let i = 0; i < count; i++) {
                 mails.push({
@@ -56,6 +58,7 @@ function _createMails(count = 5) {
                     sentAt: Date.now() + i * 1000,
                     removedAt: null,
                     from: `sender${i + 1}@mail.com`,
+                    senderName: senderNames[i],
                     to: `user@appsus.com`,
                     status: 'inbox',
                     isStared: Math.random() > 0.5,

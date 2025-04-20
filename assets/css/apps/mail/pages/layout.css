@@ -1,7 +1,19 @@
-.mail-body{
+.mail-body {
     display: flex;
-    height: 100%;
-    /* margin-bottom: 0; */
-    height: 75vh ;
+    height: calc(100vh - 120px);
+    overflow: hidden;
+    width: 100%;
+}
 
+.mail-list {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #ffffff;
+    padding: 0;
+    margin: 0;
+}
+
+.mail-sidebar {
+    min-width: 3em;
 }

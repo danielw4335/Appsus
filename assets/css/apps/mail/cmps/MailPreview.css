@@ -1,62 +1,129 @@
-
 .mail-preview {
- 
     display: flex;
-    height: 45px;
-    /* justify-content: flex-start; */
     align-items: center;
+    height: 45px;
     width: 100%;
+    padding: 0 16px;
+    gap: 12px;
+    font-family: var(--font-mail);
+    font-size: var(--font-size-md);
+    color: var(--clr-txt-primary);
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
-.mail-preview.unread{
-    background-color:#fdfdfd;
-    width: 100%;
+.mail-preview.unread {
+    background-color: var(--clr-bg-unread);
 }
 
 .mail-preview:hover {
-
-
+    background-color: var(--clr-bg-hover);
     box-shadow:
-        inset 1px 0 0 rgb(218, 220, 224),
-        inset -1px 0 0 rgb(218, 220, 224),
-        0 1px 2px 0 rgba(60, 64, 67, 0.3),
-        0 1px 3px 1px rgba(60, 64, 67, 0.15);
+        inset 1px 0 0 var(--clr-border),
+        inset -1px 0 0 var(--clr-border),
+        0 1px 2px 0 var(--clr-shadow-hover),
+        0 1px 3px 1px var(--clr-shadow);
     z-index: 2;
 }
 
-.mail-preview:hover >.box-font-after{
-        opacity: 1;
+.mail-preview:hover > .box-font-after {
+    opacity: 1;
 }
 
-.box-font-after{
-        opacity: 0;
+.box-font-after {
+    opacity: 0;
+    transition: opacity 0.2s;
+    color: var(--clr-icon);
+    flex-shrink: 0;
 }
 
 .mail-preview.unread .pre-sub,
-.mail-preview.unread .pre-from,
+.mail-preview.unread .pre-from {
+    font-weight: var(--Bold);
+}
+
 .mail-preview.unread .pre-time {
     font-weight: var(--Bold);
+    color: var(--clr-txt-unread);
 }
 
 .box-font {
     margin-right: 1em;
+    color: var(--clr-icon);
+    flex-shrink: 0;
+}
+
+.sender-info {
+    width: 180px;
+    font-family: var(--font-mail);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #202124;
+}
+
+.pre-from-name {
+    flex-shrink: 0;
+    font-weight: 500;
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pre-from-email {
+    color: #5F6368;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .pre-from {
-    width: 6em;
+    margin-right: 1em;
+    width: 8em;
     font-size: 1em;
-    font-family: var(--font-mail);
     font-weight: var(--Regular);
+    color: var(--clr-txt-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
+}
+
+.pre-sub {
+    max-width: 12em;
+    color: var(--clr-txt-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
 }
 
 .pre-body {
-
-    color: #5F6368;
+    flex: 1;
+    margin-right: 1em;
+    color: var(--clr-txt-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* <p className="pre-from" >{name}</p>
-<p className="pre-sub" >{sub}</p>
-<p className="pre-body" >{txt}</p>
-<p className="pre-time" >{date}</p>
-</div> */
+.pre-time {
+    margin-left: auto;
+    color: var(--clr-txt-secondary);
+    white-space: nowrap;
+    font-size: var(--font-size-sm);
+    text-align: right;
+    flex-shrink: 0;
+    max-width: 4em;
+}
 
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    gap: 16px;
+    overflow: hidden;
+    margin: 0 16px;
+}

@@ -1,6 +1,6 @@
 @media (max-width: 640px) {
     .note-index {
-      flex-direction: row; /* שמירה על המבנה: sidebar + content */
+      flex-direction: row; 
     }
   
     .side-nav {
@@ -24,7 +24,7 @@
   
     .pinned-notes,
     .other-notes {
-      grid-template-columns: 1fr; /* טור אחד */
+      grid-template-columns: 1fr;
     }
 
   }
