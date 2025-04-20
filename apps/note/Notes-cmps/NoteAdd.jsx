@@ -126,7 +126,7 @@ export function NoteAdd({ onAddNote }) {
           type="text"
           value={txt}
           onChange={(ev) => setTxt(ev.target.value)}
-          placeholder="Put something.."
+          placeholder="Write something.."
         />
 
         {noteType === "NoteImg" && (
@@ -158,22 +158,22 @@ export function NoteAdd({ onAddNote }) {
         )}
 
         <div className="note-type-btns">
-          <button type="button" onClick={() => setNoteType("NoteTxt")}>
+          <button type="button" onClick={() => setNoteType("NoteTxt")}  title="txt">
             <i className="fa-solid fa-font"></i>
           </button>
-          <button type="button" onClick={() => setNoteType("NoteImg")}>
+          <button type="button" onClick={() => setNoteType("NoteImg")} title="Img">
             <i className="fa-regular fa-image"></i>
           </button>
-          <button type="button" onClick={() => setNoteType("NoteVideo")}>
+          <button type="button" onClick={() => setNoteType("NoteVideo")} title="Video">
             <i className="fa-brands fa-youtube"></i>
           </button>
-          <button type="button" onClick={() => setNoteType("NoteTodos")}>
+          <button type="button" onClick={() => setNoteType("NoteTodos")} title="Todo">
             <i className="fa-solid fa-list"></i>
           </button>
-          <button type="button" onClick={() => setNoteType("NoteAudio")}>
+          <button type="button" onClick={() => setNoteType("NoteAudio")} title="Audio">
             <i className="fa-solid fa-volume-up"></i>
           </button>
-          <button type="button" onClick={() => setNoteType("NoteCanvas")}>
+          <button type="button" onClick={() => setNoteType("NoteCanvas")} title="Canvas"> 
             <i className="fa-solid fa-paintbrush"></i>
           </button>
           <button type="submit" style={{display: 'none'}}>

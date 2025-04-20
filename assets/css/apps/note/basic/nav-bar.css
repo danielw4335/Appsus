@@ -8,6 +8,13 @@
     background-color: #fff;
     box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
   }
+
+  .side-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
   
   .main-content {
     flex: 1;
@@ -38,3 +45,13 @@
     margin-bottom: 0.5rem;
   }
   
+  .li-nav-bar {
+    padding: 20px;
+    list-style: none;
+    border-bottom: 1px solid black;
+  }
+
+  .li-nav-bar:hover {
+    background-color: lightblue;
+    cursor: pointer;
+  }

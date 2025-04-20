@@ -27,6 +27,7 @@ function _loadNotes() {
       info: { txt: "Fullstack Me Baby!" },
       style: { backgroundColor: "#fdd" },
       isPinned: false,
+      isTrashed: false,
     },
     {
       id: utilService.makeId(),
@@ -37,6 +38,7 @@ function _loadNotes() {
       },
       style: { backgroundColor: "#e6f7ff" },
       isPinned: false,
+      isTrashed: false,
     },
     {
       id: utilService.makeId(),
@@ -47,6 +49,7 @@ function _loadNotes() {
       },
       style: { backgroundColor: "#e6f7ff" },
       isPinned: false,
+      isTrashed: false,
     },
     {
       id: utilService.makeId(),
@@ -59,6 +62,7 @@ function _loadNotes() {
       },
       style: { backgroundColor: "#e0f7fa" },
       isPinned: false,
+      isTrashed: false,
     },
     {
       id: utilService.makeId(),
@@ -66,6 +70,7 @@ function _loadNotes() {
       info: { txt: "Canvas" },
       style: { backgroundColor: "#e0f7fa" },
       isPinned: false,
+      isTrashed: false,
     },
     {
       id: utilService.makeId(),
@@ -76,6 +81,7 @@ function _loadNotes() {
       },
       style: { backgroundColor: "#e0f7fa" },
       isPinned: false,
+      isTrashed: false,
     },
     {
       id: utilService.makeId(),
@@ -86,6 +92,7 @@ function _loadNotes() {
       },
       style: { backgroundColor: "#e0f7fa" },
       isPinned: false,
+      isTrashed: false,
     },
   ]
 }

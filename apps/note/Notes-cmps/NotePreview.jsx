@@ -18,6 +18,7 @@ export function NotePreview({
   onTogglePin,
   onChangeColor,
   onAddNote,
+  onRestoreNote,
 }) {
   const cmpMap = {
     NoteTxt: NoteTxt,
@@ -55,16 +56,6 @@ export function NotePreview({
     navigate(`/mail/compose${query}`)
   }
 
-  function onSelectNoteType(type) {
-    setNoteType(type)
-    setTxt('')
-    setUrl('')
-    setTodosTxt('')
-    setImgFile(null)
-    setAudioFile(null)
-  }
-  
-
   return (
     <section
       className="note-preview"
@@ -91,21 +82,35 @@ export function NotePreview({
           ))}
         </div>
       )}
-      <div className="bts-note">
-        <button onClick={() => onDeleteNote(note)}>
-          <a className="fa-solid fa-trash"></a>
+      <div className="btns-note">
+        {onRestoreNote && note.isTrashed && (
+          <button onClick={() => onRestoreNote(note)} title="Restore">
+            <i className="fa-solid fa-rotate-left note-btn"></i>
+          </button>
+        )}
+
+        <button onClick={() => onDeleteNote(note)} title="Delete">
+          <a className="fa-solid fa-trash note-btn"></a>
         </button>
-        <button onClick={() => onDuplicateNote(note)}>
-          <a className="fa-solid fa-copy"></a>
+
+        <button onClick={() => onDuplicateNote(note)} title="Duplicate">
+          <a className="fa-solid fa-copy note-btn"></a>
         </button>
-        <button onClick={() => onTogglePin(note)}>
-          <a className="fa-solid fa-thumbtack"></a>
+
+        <button
+          onClick={() => onTogglePin(note)}
+          title="Pin"
+          className={note.isPinned ? "pin-btn pinned" : "pin-btn"}
+        >
+          <a className="fa-solid fa-thumbtack note-btn"></a>
         </button>
-        <button onClick={() => setIsPickerOpen((prev) => !prev)}>
-          <a className="fa-solid fa-palette"></a>
+
+        <button onClick={() => setIsPickerOpen((prev) => !prev)} title="Color">
+          <a className="fa-solid fa-palette note-btn"></a>
         </button>
-        <button onClick={onSendToMail}>
-          <a className="fa-solid fa-envelope"></a>
+
+        <button onClick={onSendToMail} title="Send">
+          <a className="fa-solid fa-envelope note-btn"></a>
         </button>
       </div>
     </section>
