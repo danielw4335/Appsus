@@ -14,7 +14,7 @@ export function MailFolderList({ onSetFilterBy, mailCountByStatus }) {
   }, [mailCountByStatus])
 
   function toggleSidebar() {
-    console.log(isOpen);
+    console.log(isOpen)
     
     setIsOpen(prev => !prev)
   }

@@ -1,8 +1,39 @@
 :root {
-    --main-bg-color: lightblue;
-
-    --mail: 'Roboto', sans-serif;
+    /* === COLORS === */
+    --clr-bg-main: #ffffff;               /* Main background */
+    --clr-bg-hover: #f1f3f4;              /* Hover background */
+    --clr-bg-unread: #f2f6fc;             /* Background for unread mail */
+    --clr-bg-sidebar: #f6f8fc;            /* Sidebar background */
+  
+    --clr-border: #dadce0;                /* Border color */
+    --clr-shadow: rgba(60, 64, 67, 0.15); /* Light shadow */
+    --clr-shadow-hover: rgba(60, 64, 67, 0.3); /* Hover shadow */
+  
+    --clr-txt-primary: #202124;           /* Main text color */
+    --clr-txt-secondary: #5f6368;         /* Secondary text */
+    --clr-txt-unread: #1f1f1f;            /* Unread text */
+    --clr-txt-link: #1a73e8;              /* Link color */
+  
+    --clr-icon: #5f6368;                  /* Icon color */
+    --clr-icon-hover: #202124;            /* Icon on hover */
+  
+    --clr-blue: #1a73e8;
+    --clr-yellow: #fbbc04;
+    --clr-red: #d93025;
+    --clr-green: #188038;
+  
+    /*  TYPOGRAPHY  */
+    --font-mail: 'Roboto', sans-serif;
     --Regular: 400;
-    --medium: 500;
+    --Medium: 500;
     --Bold: 700;
-}
+  
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.25rem;
+  
+    /*  LAYOUT  */
+    --sidebar-width: 240px;
+    --header-height: 56px;
+  }
+  

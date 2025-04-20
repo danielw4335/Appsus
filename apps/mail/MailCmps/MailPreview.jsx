@@ -15,7 +15,7 @@ export function MailPreview({ mail, onMarkAsRead, onDeleteMail, onSelectMail }) 
     }
 
     function getInfo(infos) {
-        const { from, to, subject, body, sentAt, status } = infos
+        const { from, to, subject, body, sentAt, status, senderName } = infos
 
         let text = body
         const displayText = (typeof text === 'string')
@@ -26,7 +26,7 @@ export function MailPreview({ mail, onMarkAsRead, onDeleteMail, onSelectMail }) 
 
         return {
             sub: subject,
-            name: status === 'sent' ? `To: ${to}` : from.substring(0, from.indexOf('@')),
+            senderName: status === 'sent' ? `To: ${to}` : senderName || from.split('@')[0],
             date: formatDate(sentAt),
             txt: displayText
         }
@@ -62,7 +62,7 @@ export function MailPreview({ mail, onMarkAsRead, onDeleteMail, onSelectMail }) 
 
     if (!info) return <div>Loading...</div>
 
-    const { name, sub, txt, date } = info
+    const { senderName, sub, txt, date } = info
 
     return (
         <div
@@ -74,16 +74,17 @@ export function MailPreview({ mail, onMarkAsRead, onDeleteMail, onSelectMail }) 
         >
             <div className="box-font">
                 <a className="fa-regular fa-square"></a>
-{/* <a className="fa-regular fa-star"></a> */}
-                {/* <a className="fa-regular fa-square-check"></a> */}
-                {/* <a className="fa-solid fa-star"></a> */}
-                {/* <a className="fa-regular fa-tag"></a> */}
-                {/* <a className="fa-solid fa-tag"></a> */}
             </div>
 
-            <p className="pre-from">{name}</p>
-            <p className="pre-sub">{sub}</p>
-            <p className="pre-body">-{txt}</p>
+            <div className="sender-info">
+                {senderName}
+            </div>
+            
+            <div className="content-wrapper">
+                <p className="pre-sub">{sub}</p>
+                <p className="pre-body">-{txt}</p>
+            </div>
+            
             <p className="pre-time">{date}</p>
 
             <div className="box-font-after">

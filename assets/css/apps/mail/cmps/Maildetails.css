@@ -59,6 +59,24 @@
     gap: 10px;
 }
 
+.sender-details {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.sender-name {
+    font-weight: 500;
+    color: #202124;
+    margin: 0;
+}
+
+.sender-email {
+    color: #5F6368;
+    margin: 0;
+}
+
 .mail-details .date {
     color: #888;
     font-size: 0.9em;
