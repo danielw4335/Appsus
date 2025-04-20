@@ -1,6 +1,6 @@
 const { useState, useEffect } = React
 
-export function MailFolderList({ onSetFilterBy, mailCountByStatus }) {
+export function MailFolderList({ onSetFilterBy, mailCountByStatus, onSetIsComposing }) {
   const [isOpen, setIsOpen] = useState(false)
   const [res, setRes] = useState(null)
 
@@ -29,8 +29,15 @@ export function MailFolderList({ onSetFilterBy, mailCountByStatus }) {
     })
   }
 
+  
+
   return (
     <aside className="mail-sidebar">
+
+<button className="compose-button" onClick={() => onSetIsComposing(true)}>
+                <i className="fa-solid fa-pen"></i>
+                <span>Compose</span>
+            </button>
 
       <div className="sidebar-item" onClick={() => onClickFolder('inbox')}>
         <i className="fa-solid fa-inbox sidebar-icon"></i>

@@ -2,7 +2,7 @@ import { MailService } from "../services/mail.service"
 
 const { useState, useEffect } = React
 
-export function MailPreview({ mail, onMarkAsRead, onDeleteMail, onSelectMail }) {
+export function MailPreview({ mail, onMarkAsRead, onDeleteMail, onSelectMail, onToggleStar, onToggleRead }) {
     const [info, setInfo] = useState(null)
 
     useEffect(() => {
@@ -19,9 +19,7 @@ export function MailPreview({ mail, onMarkAsRead, onDeleteMail, onSelectMail }) 
 
         let text = body
         const displayText = (typeof text === 'string')
-            ? (text.length <= 100
-                ? text
-                : text.substring(0, 20))
+            ? (text.length <= 100 ? text : text.substring(0, 20))
             : ''
 
         return {
@@ -65,7 +63,7 @@ export function MailPreview({ mail, onMarkAsRead, onDeleteMail, onSelectMail }) 
     const { senderName, sub, txt, date } = info
 
     return (
-        <div
+        <li
             className={`mail-preview ${mail.isRead ? 'read' : 'unread'}`}
             onClick={(event) => {
                 onMarkAsRead(mail.id, event)
@@ -73,26 +71,40 @@ export function MailPreview({ mail, onMarkAsRead, onDeleteMail, onSelectMail }) 
             }}
         >
             <div className="box-font">
-                <a className="fa-regular fa-square"></a>
+                <a
+                    className="fa-regular fa-square"
+                    onClick={(ev) => ev.stopPropagation()}
+                ></a>
+                <a
+                    className={`fa-star ${mail.isStarred ? 'fa-solid star-icon starred' : 'fa-regular star-icon'}`}
+                    onClick={(ev) => {
+                        ev.stopPropagation()
+                        onToggleStar(mail.id)
+                    }}
+                ></a>
             </div>
 
             <div className="sender-info">
                 {senderName}
             </div>
-            
+
             <div className="content-wrapper">
                 <p className="pre-sub">{sub}</p>
                 <p className="pre-body">-{txt}</p>
             </div>
-            
+
             <p className="pre-time">{date}</p>
 
             <div className="box-font-after">
                 <a
+                    className={`fa-regular ${mail.isRead ? 'fa-envelope-open' : 'fa-envelope'}`}
+                    onClick={(ev) => onToggleRead(mail.id, ev)}
+                ></a>
+                <a
                     className="fa-regular fa-trash-can"
-                    onClick={(event) => onDeleteMail(mail.id, event)}
+                    onClick={(ev) => onDeleteMail(mail.id, ev)}
                 ></a>
             </div>
-        </div>
+        </li>
     )
 }

@@ -37,3 +37,6 @@
     --header-height: 56px;
   }
   
+  button {
+    touch-action: manipulation;
+  }

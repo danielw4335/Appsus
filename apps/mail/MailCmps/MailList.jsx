@@ -7,24 +7,28 @@ export function MailList({ mails, loadingClass, onReload, onSelectMail }) {
 
     function onMarkAsRead(mailId, ev) {
         ev.stopPropagation()
-        MailService.markAsRead(mailId).then(() => {
-          onReload()
-        }).catch(err => console.error('Failed to mark', err))
-      }
+        MailService.markAsRead(mailId).then(onReload)
+    }
 
     function onDeleteMail(mailId, ev) {
         ev.stopPropagation()
-        MailService.deleteMail(mailId).then(() => {
-            onReload()
-        }).catch(err => console.error('Failed to delete', err))
+        MailService.deleteMail(mailId).then(onReload)
     }
 
+    function onToggleStar(mailId) {
+        MailService.toggleStar(mailId).then(onReload)
+    }
+
+    function onToggleRead(mailId, ev) {
+        ev.stopPropagation()
+        MailService.toggleRead(mailId).then(onReload)
+    }
 
     if (!mails || !mails.length) return <div>No Mails To Show...</div>
-    return (
 
+    return (
         <ul className="mail-list container">
-          {mails.map(mail => (
+            {mails.map(mail => (
                 <MailPreview
                     key={mail.id}
                     mail={mail}
@@ -32,9 +36,10 @@ export function MailList({ mails, loadingClass, onReload, onSelectMail }) {
                     onMarkAsRead={onMarkAsRead}
                     onDeleteMail={onDeleteMail}
                     onSelectMail={onSelectMail}
+                    onToggleStar={onToggleStar}
+                    onToggleRead={onToggleRead}
                 />
             ))}
         </ul>
     )
-
 }
