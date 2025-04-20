@@ -64,10 +64,11 @@ export function MailIndex() {
             <MailFilter
                 onSetFilterBy={onSetFilterBy}
                 filterBy={filterBy}
-                onSetIsComposing={onSetIsComposing}
+              
             />
             <div className="mail-body">
                 <MailFolderList
+                  onSetIsComposing={onSetIsComposing}
                     mailCountByStatus={mailCountByStatus}
                     onSetFilterBy={onSetFilterBy}
                 />

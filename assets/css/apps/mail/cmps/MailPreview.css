@@ -10,6 +10,8 @@
     color: var(--clr-txt-primary);
     overflow: hidden;
     box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
 }
 
 .mail-preview.unread {
@@ -23,11 +25,47 @@
         inset -1px 0 0 var(--clr-border),
         0 1px 2px 0 var(--clr-shadow-hover),
         0 1px 3px 1px var(--clr-shadow);
-    z-index: 2;
 }
 
 .mail-preview:hover > .box-font-after {
     opacity: 1;
+}
+
+.box-font {
+    margin-right: 1em;
+    color: var(--clr-icon);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    position: relative;
+}
+
+.box-font a, 
+.box-font-after a {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.box-font a:hover, 
+.box-font-after a:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: scale(1.1);
+}
+
+.box-font a:active,
+.box-font-after a:active {
+    transform: scale(0.95);
+}
+
+.star-icon {
+    color: var(--clr-icon);
+}
+
+.star-icon.starred {
+    color: gold;
 }
 
 .box-font-after {
@@ -35,6 +73,9 @@
     transition: opacity 0.2s;
     color: var(--clr-icon);
     flex-shrink: 0;
+    display: flex;
+    gap: 8px;
+    position: relative;
 }
 
 .mail-preview.unread .pre-sub,
@@ -47,58 +88,22 @@
     color: var(--clr-txt-unread);
 }
 
-.box-font {
-    margin-right: 1em;
-    color: var(--clr-icon);
-    flex-shrink: 0;
-}
-
 .sender-info {
     width: 180px;
-    font-family: var(--font-mail);
     font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: #202124;
-}
-
-.pre-from-name {
-    flex-shrink: 0;
-    font-weight: 500;
-    max-width: 140px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.pre-from-email {
-    color: #5F6368;
-    font-size: 0.9em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.pre-from {
-    margin-right: 1em;
-    width: 8em;
-    font-size: 1em;
-    font-weight: var(--Regular);
     color: var(--clr-txt-primary);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    flex-shrink: 0;
 }
 
 .pre-sub {
     max-width: 12em;
-    color: var(--clr-txt-primary);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     flex-shrink: 1;
+    font-weight: 500;
 }
 
 .pre-body {
