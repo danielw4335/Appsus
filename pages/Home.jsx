@@ -14,6 +14,12 @@ export function Home() {
                 </div>
 
                 <div className="app-card">
+                    <img src="./assets/img/book-shops.jpg" alt="Book App" />
+                    <h3>BookShop</h3>
+                    <Link to="/books" className="try-btn">Open</Link>
+                </div>
+
+                <div className="app-card">
                     <img src="./assets/img/Keep.png" alt="Keep App" />
                     <h3>Appsus Keep</h3>
                     <Link to="/note" className="try-btn">Open</Link>

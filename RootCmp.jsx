@@ -11,6 +11,7 @@ import { NoteTrash } from "./apps/note/Notes-cmps/dynamic-cmps/NoteTrash.jsx"
 import { NoteArchive } from "./apps/note/pages/NoteArchive.jsx"
 import { NoteRemainder } from "./apps/note/pages/NoteRemainder.jsx"
 import { NoteEditLabel } from "./apps/note/pages/NoteEditLabel.jsx"
+import { BookDetails } from './apps/book/pages/BookDetails.jsx'
 
 export function App() {
     return <Router>
@@ -20,6 +21,7 @@ export function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/books" element={<BookIndex />} />
+                <Route path="/books/:bookId" element={<BookDetails />} />
                 <Route path="/mail" element={<MailIndex />} />
                 <Route path="/note" element={<NoteIndex />} />
 
@@ -31,3 +33,4 @@ export function App() {
         </section>
     </Router>
 }
+

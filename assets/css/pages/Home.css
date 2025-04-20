@@ -1,97 +1,97 @@
- /* home */
+.home-page {
+  padding: 2em 1em;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafa;
+  color: #2e2e2e;
+}
 
+.home-page h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.3em;
+  color: #1e1e1e;
+}
 
+.home-page p {
+  font-size: 1.1em;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto 2em;
+  line-height: 1.6;
+}
 
+.app-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2em;
+  justify-items: center;
+  margin-bottom: 2em;
+}
 
- .home-page {
-    padding: 2em 1em;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9fafa;
-    color: #2e2e2e;
-  }
- 
-  .home-page h1 {
-    font-size: 2.5em;
-    margin-bottom: 0.3em;
-    color: #1e1e1e;
-  }
-  
-  .home-page p {
-    font-size: 1.1em;
-    color: #555;
-    max-width: 600px;
-    margin: 0 auto 2em;
-    line-height: 1.6;
-  }
-  
+@media (min-width: 600px) {
   .app-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2em;
-    justify-items: center;
-    margin-bottom: 2em;
-  }
-  
-  @media (min-width: 600px) {
-    .app-grid {
       grid-template-columns: repeat(2, 1fr);
-    }
   }
-  
-  .app-card {
-    background-color: #ffffff;
-    border-radius: 16px;
-    padding: 2em 1.5em;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    width: 250px;
-    text-align: center;
+}
+
+@media (min-width: 900px) {
+  .app-grid {
+      grid-template-columns: repeat(3, 1fr);
   }
-  
-  .app-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-  }
-  
-  .app-card img {
-    width: 96px;
-    height: 96px;
-    object-fit: contain;
-    margin-bottom: 1em;
-  }
-  
-  .app-card h3 {
-    margin-bottom: 0.5em;
-    font-size: 1.3em;
-    color: #333;
-  }
-  
-  .try-btn {
-    display: inline-block;
-    margin-top: 1em;
-    background-color: #2979ff;
-    color: white;
-    padding: 0.6em 1.2em;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.95em;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-    touch-action: manipulation;
-  }
-  
-  .try-btn:hover {
-    background-color: #1a5edb;
-  }
-  
-  .try-btn:active {
-    transform: scale(0.97);
-  }
-  
-  .built-by {
-    margin-top: 2em;
-    font-size: 0.9em;
-    color: #888;
-  }
-  
+}
+
+.app-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2em 1.5em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 250px;
+  text-align: center;
+}
+
+.app-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.app-card img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  margin-bottom: 1em;
+}
+
+.app-card h3 {
+  margin-bottom: 0.5em;
+  font-size: 1.3em;
+  color: #333;
+}
+
+.try-btn {
+  display: inline-block;
+  margin-top: 1em;
+  background-color: #2979ff;
+  color: white;
+  padding: 0.6em 1.2em;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95em;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  touch-action: manipulation;
+}
+
+.try-btn:hover {
+  background-color: #1a5edb;
+}
+
+.try-btn:active {
+  transform: scale(0.97);
+}
+
+.built-by {
+  margin-top: 2em;
+  font-size: 0.9em;
+  color: #888;
+}
