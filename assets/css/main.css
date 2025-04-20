@@ -15,6 +15,7 @@
 /* Note - Basic  */
 @import './apps/note/basic/nav-bar.css';
 @import './apps/note/basic/mq.css';
+@import './apps/note/basic/note-header.css';
 
 
 /* Pages */

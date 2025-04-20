@@ -58,22 +58,24 @@ export function NoteIndex() {
 
   function getFilteredNotes(notes, filterBy) {
     return notes
-      .filter(note => !note.isTrashed) 
-      .filter(note => {
+      .filter((note) => !note.isTrashed)
+      .filter((note) => {
         const txt = filterBy.txt.toLowerCase()
-  
+
         const matchText =
           !txt ||
           (note.info.txt && note.info.txt.toLowerCase().includes(txt)) ||
           (note.info.title && note.info.title.toLowerCase().includes(txt)) ||
-          (note.info.todos && note.info.todos.some(todo => todo.txt.toLowerCase().includes(txt)))
-  
+          (note.info.todos &&
+            note.info.todos.some((todo) =>
+              todo.txt.toLowerCase().includes(txt)
+            ))
+
         const matchType = filterBy.type === "all" || note.type === filterBy.type
-  
+
         return matchText && matchType
       })
   }
-  
 
   if (!notes) return <div>Loading notes...</div>
   const filteredNotes = getFilteredNotes(notes, filterBy)
@@ -81,33 +83,39 @@ export function NoteIndex() {
     <section className="note-index">
       <button
         className="hamburger-btn"
-        onClick={() => setIsMenuOpen((prev) => !prev)}
-      >
-        ☰
-      </button>
+        onClick={() => setIsMenuOpen((prev) => !prev)}>☰</button>
 
       <aside className={`side-nav ${isMenuOpen ? "open" : ""}`}>
         <ul>
           <li className="li-nav-bar">
-            <i className="fa-regular fa-lightbulb"></i> Notes
+            <i className="fa-solid fa-inbox sidebar-icon"></i>
+            <span className="label">Notes</span>
           </li>
+
           <li className="li-nav-bar">
-            <i className="fa-regular fa-bell"></i> Reminders
+            <i className="fa-regular fa-bell"></i>
+            <span className="label">Reminders</span>
           </li>
+
           <li className="li-nav-bar">
-            <i className="fa-regular fa-pen-to-square"></i> Edit Labels
+            <i className="fa-regular fa-pen-to-square"></i>
+            <span className="label">Edit Labels</span>
           </li>
+
           <li className="li-nav-bar">
-            <i className="fa-regular fa-box-archive"></i> Archive
+            <i className="fa-regular fa-box-archive"></i>
+            <span className="label">Archive</span>
           </li>
-          <Link to="/note/trash">
-            <li>
-              <i className="fa-regular fa-trash-can"></i> Trash
-            </li>
-          </Link>
+
+          <li className="li-nav-bar">
+            <Link to="/note/trash">
+              <i className="fa-regular fa-trash-can sidebar-icon"></i>
+              <span className="label">Trash</span>
+            </Link>
+          </li>
         </ul>
       </aside>
-      
+
       {isMenuOpen && (
         <div
           className="side-nav-overlay"

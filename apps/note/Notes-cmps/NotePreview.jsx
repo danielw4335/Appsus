@@ -6,8 +6,6 @@ import { NoteCanvas } from "./dynamic-cmps/NoteCanvas.jsx"
 import { NoteAudio } from "./dynamic-cmps/NoteAudio.jsx"
 import { NoteMap } from "./dynamic-cmps/NoteMap.jsx"
 
-import { noteService } from "../services/note.service.js"
-import { NoteIndex } from "../pages/NoteIndex.jsx"
 
 const { useState } = React
 const { useNavigate } = ReactRouterDOM

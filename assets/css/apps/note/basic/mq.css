@@ -3,11 +3,6 @@
 }
 
 @media (max-width: 640px) {
-  html,
-  body {
-    overflow-x: hidden;
-  }
-
   .note-index {
     flex-direction: row;
     max-width: 100%;
@@ -44,37 +39,37 @@
 
   .side-nav {
     position: fixed;
-    top: 0;
+    top: 60px; 
     left: 0;
-    width: 220px;
-    height: 100vh;
+    width: 60px; 
+    background-color: white;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: width 0.3s ease;
     z-index: 1001;
-    transition: transform 0.3s ease;
-    transform: translateX(-100%);
   }
-
-  .side-nav.open {
-    transform: translateX(0);
+  
+  .side-nav:hover {
+    width: 220px; 
   }
-
-  .side-nav-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-  }
-
-  /* .hamburger-btn {
-    display: block;
-    height: 80px;
-  } */
-
+  
   .li-nav-bar {
     padding: 20px;
-    list-style: none;
     border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
   }
+  
+  .li-nav-bar .label {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .side-nav:hover .label {
+    opacity: 1;
+  }
+  
+  
 }

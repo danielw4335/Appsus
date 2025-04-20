@@ -1,57 +1,71 @@
 .note-index {
-    display: flex;
-    min-height: 100vh;
-  }
-  
-  .side-nav {
-    width: 220px;
-    background-color: #fff;
-    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-  }
+  display: flex;
+  min-height: 100vh;
+  padding-left: 60px; /* משאיר מקום ל-side-nav הצר */
+  transition: padding-left 0.3s;
+}
 
-  .side-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  
-  .main-content {
-    flex: 1;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  
-  .top-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-  
-  .pinned-notes,
-  .other-notes {
-    display: flex;
-    flex-direction: row;
-    gap: 1.5rem;
-  }
-  
-  .pinned-notes h2,
-  .other-notes h2 {
-    grid-column: 1 / -1;
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .li-nav-bar {
-    padding: 20px;
-    list-style: none;
-    border-bottom: 1px solid black;
-  }
 
-  .li-nav-bar:hover {
-    background-color: lightblue;
-    cursor: pointer;
-  }
+.side-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.li-nav-bar {
+  padding: 20px;
+  list-style: none;
+  border-bottom: 1px solid black;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.li-nav-bar:hover {
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+.side-nav {
+  position: absolute;
+  top: 60px; 
+  left: 0;
+  width: 60px;
+  height: calc(100vh - 60px); 
+  background-color: white;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
+  overflow: hidden;
+  z-index: 1001;
+}
+
+.side-nav:hover {
+  width: 220px;
+}
+
+.side-nav.open {
+  transform: translateX(0);
+}
+
+.side-nav-overlay {
+  display: none;
+}
+
+.side-nav.open + .side-nav-overlay {
+  display: block;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.li-nav-bar .label {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.side-nav:hover .label {
+  opacity: 1;
+}
