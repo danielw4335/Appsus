@@ -6,11 +6,12 @@ import { About } from "./pages/About.jsx"
 import { Home } from "./pages/Home.jsx"
 import { MailIndex } from "./apps/mail/pages/MailIndex.jsx"
 import { NoteIndex } from "./apps/note/pages/NoteIndex.jsx"
-
+import { BookIndex } from "./apps/book/pages/BookIndex.jsx"
 import { NoteTrash } from "./apps/note/Notes-cmps/dynamic-cmps/NoteTrash.jsx"
 import { NoteArchive } from "./apps/note/pages/NoteArchive.jsx"
 import { NoteRemainder } from "./apps/note/pages/NoteRemainder.jsx"
 import { NoteEditLabel } from "./apps/note/pages/NoteEditLabel.jsx"
+import { BookDetails } from './apps/book/pages/BookDetails.jsx'
 
 export function App() {
     return <Router>
@@ -19,9 +20,11 @@ export function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/books" element={<BookIndex />} />
+                <Route path="/books/:bookId" element={<BookDetails />} />
                 <Route path="/mail" element={<MailIndex />} />
                 <Route path="/note" element={<NoteIndex />} />
-                
+
                 <Route path="/note/trash" element={<NoteTrash />} />
                 <Route path="/note/archive" element={<NoteArchive />} />
                 <Route path="/note/remainder" element={<NoteRemainder />} />
@@ -30,3 +33,4 @@ export function App() {
         </section>
     </Router>
 }
+

@@ -1,0 +1,43 @@
+@media (min-width: 100px) {
+  .book-details {
+    display: grid;
+    grid-template-columns: minmax(100px 1fr) minmax(100px 2fr);
+  }
+
+  .book-details img {
+    max-width: 200px;
+    flex-shrink: 0;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .book-details h1 {
+    color: var(--clr1);
+    font-size: 2em;
+    margin: 0;
+  }
+
+  .book-details h5 {
+    color: var(--clr2);
+    margin: 0.5em 0 0;
+  }
+
+}
+
+@media (min-width: 610px) {
+  .book-filter {
+    margin: 1em 5em;
+}
+  
+}
+
+@media (min-width: 1100px) {
+  .book-filter {
+    margin: 1em 18em;
+}
+  
+}

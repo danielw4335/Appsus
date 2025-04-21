@@ -1,5 +1,5 @@
 /* Setup */
-
+/* @import './assets/css/style.css'; */
 @import './setup/variables.css';
 /* @import './setup/fonts.css'; */
 
@@ -47,3 +47,20 @@
 @import './apps/mail/cmps/MaiFolderList.css';
 @import './apps/mail/cmps/Maildetails.css';
 @import './setup/mail-mq.css';
+
+
+@import "./style/cmps/user-msg.css";
+@import "./style/cmps/book-filter.css";
+@import "./style/cmps/book-list.css";
+@import "./style/cmps/book-preview.css";
+
+@import "./style/pages/book-index.css";
+@import "./style/pages/book-details.css";
+@import "./style/pages/book-edit.css";
+
+@import "./style/base/base.css";
+@import "./style/base/helpers.css";
+@import "./style/base/forms.css";
+@import "./style/base/layout.css";
+
+@import "./style/setup/mq.css";
