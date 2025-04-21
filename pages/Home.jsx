@@ -12,7 +12,7 @@ export function Home() {
                     <h3>Appsus Mail</h3>
                     <Link to="/mail" className="try-btn">Open</Link>
                 </div>
-
+ 
                 <div className="app-card">
                     <img src="./assets/img/Keep.png" alt="Keep App" />
                     <h3>Appsus Keep</h3>
