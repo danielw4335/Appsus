@@ -45,6 +45,10 @@
   transition: 0.3s;
   border-radius: 4px;
   width: 2rem;
+  
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .btns-note {
@@ -57,3 +61,4 @@
   opacity: 1;
   pointer-events: auto;
 }
+

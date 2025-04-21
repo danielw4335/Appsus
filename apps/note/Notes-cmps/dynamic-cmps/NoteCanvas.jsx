@@ -55,6 +55,28 @@ export function NoteCanvas({ info, onAddNote }) {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
   }
 
+  function handleTouchStart(ev) {
+    ev.preventDefault()
+
+    const touch = ev.touches[0]
+    const mouseEvent = new MouseEvent("mousedown", {
+      clientX: touch.clientX,
+      clientY: touch.clientY,
+    })
+    ev.target.dispatchEvent(mouseEvent)
+  }
+
+  function handleTouchMove(ev) {
+    ev.preventDefault()
+
+    const touch = ev.touches[0]
+    const mouseEvent = new MouseEvent("mousemove", {
+      clientX: touch.clientX,
+      clientY: touch.clientY,
+    })
+    ev.target.dispatchEvent(mouseEvent)
+  }
+
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -66,16 +88,26 @@ export function NoteCanvas({ info, onAddNote }) {
     ctx.strokeStyle = "black"
     ctx.lineCap = "round"
 
+    // Mouse Events
     canvas.addEventListener("mousedown", onMouseDown)
     canvas.addEventListener("mousemove", onMouseMove)
     canvas.addEventListener("mouseup", onMouseUp)
     canvas.addEventListener("mouseleave", onMouseUp)
+
+    // Touch Events
+    canvas.addEventListener("touchstart", handleTouchStart)
+    canvas.addEventListener("touchmove", handleTouchMove)
+    canvas.addEventListener("touchend", onMouseUp)
 
     return () => {
       canvas.removeEventListener("mousedown", onMouseDown)
       canvas.removeEventListener("mousemove", onMouseMove)
       canvas.removeEventListener("mouseup", onMouseUp)
       canvas.removeEventListener("mouseleave", onMouseUp)
+
+      canvas.removeEventListener("touchstart", handleTouchStart)
+      canvas.removeEventListener("touchmove", handleTouchMove)
+      canvas.removeEventListener("touchend", onMouseUp)
     }
   }, [])
 

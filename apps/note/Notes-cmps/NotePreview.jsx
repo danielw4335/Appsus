@@ -102,14 +102,6 @@ export function NotePreview({
           <a className="fa-solid fa-copy note-btn"></a>
         </button>
 
-        {/* <button
-          onClick={() => onTogglePin(note)}
-          title="Pin"
-          className={note.isPinned ? "pin-btn pinned" : "pin-btn"}
-        >
-          <a className="fa-solid fa-thumbtack note-btn"></a>
-        </button> */}
-
         <button onClick={() => setIsPickerOpen((prev) => !prev)} title="Color">
           <a className="fa-solid fa-palette note-btn"></a>
         </button>
