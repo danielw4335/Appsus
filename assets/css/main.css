@@ -1,8 +1,8 @@
 /* Setup */
 /* @import './assets/css/style.css'; */
-@import './setup/variables.css';
+@import './style/setup/vars.css';
+/* @import './setup/variables.css'; */
 /* @import './setup/fonts.css'; */
-
 /* Basics */
 
 @import './basics/base.css';

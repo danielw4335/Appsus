@@ -6,7 +6,6 @@ import { NoteCanvas } from "./dynamic-cmps/NoteCanvas.jsx"
 import { NoteAudio } from "./dynamic-cmps/NoteAudio.jsx"
 import { NoteMap } from "./dynamic-cmps/NoteMap.jsx"
 
-
 const { useState } = React
 const { useNavigate } = ReactRouterDOM
 export function NotePreview({
@@ -59,6 +58,14 @@ export function NotePreview({
       className="note-preview"
       style={{ backgroundColor: note.style.backgroundColor }}
     >
+      <button
+        onClick={() => onTogglePin(note)}
+        title="Pin"
+        className={note.isPinned ? "pin-btn pinned" : "pin-btn"}
+      >
+        <a className="fa-solid fa-thumbtack note-btn"></a>
+      </button>
+
       {note.type === "NoteCanvas" ? (
         <NoteCanvas info={note.info} onAddNote={onAddNote} />
       ) : (
@@ -95,13 +102,13 @@ export function NotePreview({
           <a className="fa-solid fa-copy note-btn"></a>
         </button>
 
-        <button
+        {/* <button
           onClick={() => onTogglePin(note)}
           title="Pin"
           className={note.isPinned ? "pin-btn pinned" : "pin-btn"}
         >
           <a className="fa-solid fa-thumbtack note-btn"></a>
-        </button>
+        </button> */}
 
         <button onClick={() => setIsPickerOpen((prev) => !prev)} title="Color">
           <a className="fa-solid fa-palette note-btn"></a>

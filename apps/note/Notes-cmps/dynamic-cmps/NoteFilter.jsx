@@ -6,6 +6,7 @@ export function NoteFilter({ onSetFilter }) {
   return (
     <section className="note-filter">
       <input
+        placeholder="Filter by type and text"
         type="text"
         value={filterBy.txt}
         onChange={(ev) => {

@@ -1,4 +1,4 @@
-.btns-note{
+.btns-note {
   display: flex;
   flex-direction: row;
   place-content: center;
@@ -37,13 +37,23 @@
 }
 
 .pin-btn.pinned {
-  background-color: gold;
-  color: black;
+  background-color: var(--pin-btn);
+  color: var(--gray3);
 }
 
 .pin-btn {
   transition: 0.3s;
   border-radius: 4px;
+  width: 2rem;
 }
 
+.btns-note {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
 
+.note-preview:hover .btns-note {
+  opacity: 1;
+  pointer-events: auto;
+}

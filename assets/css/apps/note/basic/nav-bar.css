@@ -24,7 +24,7 @@
 }
 
 .li-nav-bar:hover {
-  background-color: lightblue;
+  background-color: var(--nav-bar-aside-note);
   cursor: pointer;
 }
 
